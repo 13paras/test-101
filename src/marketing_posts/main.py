@@ -6,19 +6,19 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-neatlogs.init(api_key=os.getenv('NEATLOGS_API_KEY'), tags=['testing', 'crewai']
+neatlogs.init(api_key=os.getenv('NEATLOGS_API_KEY'), tags=['testing', 'openai']
               )
 
 
 def run():
     # Replace with your inputs, it will automatically interpolate any tasks and agents information
     inputs = {
-        'customer_domain': 'crewai.com',
+        'customer_domain': 'openai.com',
         'project_description': """
-CrewAI, a leading provider of multi-agent systems, aims to revolutionize marketing automation for its enterprise clients. This project involves developing an innovative marketing strategy to showcase CrewAI's advanced AI-driven solutions, emphasizing ease of use, scalability, and integration capabilities. The campaign will target tech-savvy decision-makers in medium to large enterprises, highlighting success stories and the transformative potential of CrewAI's platform.
+OpenAI, a leading provider of artificial intelligence research and deployment, aims to revolutionize AI accessibility for its enterprise clients. This project involves developing an innovative marketing strategy to showcase OpenAI's advanced AI models and solutions, emphasizing safety, capability, and integration possibilities. The campaign will target tech-savvy decision-makers in medium to large enterprises, highlighting success stories and the transformative potential of OpenAI's platform.
 
-Customer Domain: AI and Automation Solutions
-Project Overview: Creating a comprehensive marketing campaign to boost awareness and adoption of CrewAI's services among enterprise clients.
+Customer Domain: AI Research and Development
+Project Overview: Creating a comprehensive marketing campaign to boost awareness and adoption of OpenAI's services among enterprise clients.
 """
     }
     MarketingPostsCrew().crew().kickoff(inputs=inputs)
@@ -29,12 +29,12 @@ def train():
     Train the crew for a given number of iterations.
     """
     inputs = {
-        'customer_domain': 'crewai.com',
+        'customer_domain': 'openai.com',
         'project_description': """
-CrewAI, a leading provider of multi-agent systems, aims to revolutionize marketing automation for its enterprise clients. This project involves developing an innovative marketing strategy to showcase CrewAI's advanced AI-driven solutions, emphasizing ease of use, scalability, and integration capabilities. The campaign will target tech-savvy decision-makers in medium to large enterprises, highlighting success stories and the transformative potential of CrewAI's platform.
+OpenAI, a leading provider of artificial intelligence research and deployment, aims to revolutionize AI accessibility for its enterprise clients. This project involves developing an innovative marketing strategy to showcase OpenAI's advanced AI models and solutions, emphasizing safety, capability, and integration possibilities. The campaign will target tech-savvy decision-makers in medium to large enterprises, highlighting success stories and the transformative potential of OpenAI's platform.
 
-Customer Domain: AI and Automation Solutions
-Project Overview: Creating a comprehensive marketing campaign to boost awareness and adoption of CrewAI's services among enterprise clients.
+Customer Domain: AI Research and Development
+Project Overview: Creating a comprehensive marketing campaign to boost awareness and adoption of OpenAI's services among enterprise clients.
 """
     }
     try:
