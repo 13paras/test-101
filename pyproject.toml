@@ -11,4 +11,11 @@ dependencies = [
     "langgraph>=0.6.7",
     "neatlogs>=1.1.7",
     "python-dotenv>=1.1.1",
+    "pydantic>=2.0.0",
+    "requests>=2.31.0",
+    "schedule>=1.2.0",
+    "pandas>=2.0.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "openpyxl>=3.1.0",
 ]

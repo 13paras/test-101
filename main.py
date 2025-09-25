@@ -9,6 +9,7 @@ import time
 from pydantic import BaseModel
 import neatlogs  # ✅ imported and initialized only — no usage below
 import random
+from pydantic_verification_system import assess_pydantic_ai_response
 
 load_dotenv()
 
@@ -35,6 +36,7 @@ class State(TypedDict):
     user_message: str
     ai_message: str
     is_coding_question: bool
+    verification_result: dict  # For storing Pydantic verification results
 
 # 🎯 Global counter to trigger error after 2 successful runs
 CALL_COUNTER = 0
@@ -89,7 +91,22 @@ def solve_coding_question(state: State):
                 {"role": "user", "content": user_message},
             ],
         )
-        state["ai_message"] = result.choices[0].message.parsed.ai_message
+        ai_response = result.choices[0].message.parsed.ai_message
+        
+        # Check if the response is about Pydantic and verify accuracy
+        if "pydantic" in user_message.lower() or "pydantic" in ai_response.lower():
+            verification_result = assess_pydantic_ai_response(ai_response)
+            state["verification_result"] = verification_result
+            # Use enhanced response if improvements were made
+            if verification_result["improvement_needed"]:
+                state["ai_message"] = verification_result["enhanced_response"]
+                print(f"⚠️  Coding response enhanced for Pydantic accuracy. Issues found: {len(verification_result['verification_result']['issues_found'])}")
+            else:
+                state["ai_message"] = ai_response
+                print("✅ Pydantic coding response verified as accurate")
+        else:
+            state["ai_message"] = ai_response
+            
     except Exception as e:
         raise Exception(f"Error in solve_coding_question: {str(e)}")
 
@@ -109,7 +126,22 @@ def solve_simple_question(state: State):
                 {"role": "user", "content": user_message},
             ],
         )
-        state["ai_message"] = result.choices[0].message.parsed.ai_message
+        ai_response = result.choices[0].message.parsed.ai_message
+        
+        # Check if the response is about Pydantic and verify accuracy
+        if "pydantic" in user_message.lower() or "pydantic" in ai_response.lower():
+            verification_result = assess_pydantic_ai_response(ai_response)
+            state["verification_result"] = verification_result
+            # Use enhanced response if improvements were made
+            if verification_result["improvement_needed"]:
+                state["ai_message"] = verification_result["enhanced_response"]
+                print(f"⚠️  Response enhanced for Pydantic accuracy. Issues found: {len(verification_result['verification_result']['issues_found'])}")
+            else:
+                state["ai_message"] = ai_response
+                print("✅ Pydantic response verified as accurate")
+        else:
+            state["ai_message"] = ai_response
+            
     except Exception as e:
         raise Exception(f"Error in solve_simple_question: {str(e)}")
 
@@ -133,13 +165,22 @@ def call_graph():
     state = {
         "user_message": "Explain me about Pydantic in Python",
         "ai_message": "",
-        "is_coding_question": False
+        "is_coding_question": False,
+        "verification_result": {}
     }
 
     try:
         print("🚀 Running graph...")
         result = graph.invoke(state)
         print("✅ Success:", result["ai_message"][:100] + "...")
+        
+        # Print verification results if available
+        if "verification_result" in result and result["verification_result"]:
+            ver_result = result["verification_result"]["verification_result"]
+            print(f"📊 Verification - Accuracy: {ver_result['accuracy_level']}, Confidence: {ver_result['confidence_score']:.2f}")
+            if ver_result["issues_found"]:
+                print(f"🔍 Issues addressed: {len(ver_result['issues_found'])}")
+                
     except Exception as e:
         print("❌ ERROR CAUGHT:", str(e))  # <-- Pure Python print, no neatlogs
 
