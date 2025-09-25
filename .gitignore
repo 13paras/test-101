@@ -1,14 +1,14 @@
-# Python-generated files
+.env
+jobposting-api
+db
+__pycache__
+poetry.lock
 __pycache__/
 *.py[oc]
 build/
 dist/
+.DS_Store
 wheels/
-*.egg-info
-
-# Virtual environments
 .venv
-
 QWEN.MD
-
 .env

@@ -1,14 +1,23 @@
 [project]
-name = "test-101"
+name = "job_posting"
 version = "0.1.0"
-description = "Add your description here"
+description = ""
+authors = [{name = "Your Name", email = "you@example.com"}]
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.12,<=3.13"
 dependencies = [
-    "langchain>=0.3.26",
-    "langchain-community>=0.3.27",
-    "langchain-openai>=0.2.14",
-    "langgraph>=0.6.7",
-    "neatlogs>=1.1.7",
+    "crewai-tools>=0.59.0",
+    "crewai[tools]>=0.152.0",
     "python-dotenv>=1.1.1",
 ]
+
+[project.scripts]
+job_posting = "job_posting.main:run"
+train = "job_posting.main:train"
+run_crew = "job_posting.main:run"
+
+[build-system]
+requires = [
+    "hatchling",
+]
+build-backend = "hatchling.build"
