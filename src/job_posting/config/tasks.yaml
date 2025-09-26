@@ -26,24 +26,31 @@ draft_job_posting_task:
     followed by a detailed role description, responsibilities, and required skills and qualifications.
     Ensure the tone aligns with the company's culture and incorporate any unique benefits or
     opportunities offered by the company. Specific benefits: {specific_benefits}.
+    MANDATORY: Include a competitive salary range based on industry standards for the specific role and location.
+    For Production Assistant roles in Los Angeles, include salary range of $36,000-$56,000 annually 
+    (or $17.56-$27.18 per hour) based on experience and qualifications. Adjust ranges appropriately 
+    for other roles and locations based on market research.
     Include a Location section as exactly:
     Location
     Remote - Global Team
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, unique company benefits, and a clearly stated salary range compliant with US labor laws.
+    The tone should resonate with the company's culture and values, aimed at attracting the right candidates. 
 
 
 review_and_edit_job_posting_task:
   description: >
     Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
-    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
-    feedback for any necessary revisions.
+    to the desired candidates and accurately reflects the role's unique benefits and opportunities. 
+    CRITICAL: Verify that the job posting includes a competitive salary range that complies with US labor laws.
+    If missing, add an appropriate salary range based on industry standards for the role and location.
+    Provide feedback for any necessary revisions.
   expected_output: >
-    A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
-    Feedback on potential improvements and final approval for publishing. Formatted in markdown.
+    A polished, error-free job posting that is clear, engaging, perfectly aligned with the company's culture and values,
+    and includes a compliant salary range. Feedback on potential improvements and final approval for publishing. 
+    Formatted in markdown.
 
 industry_analysis_task:
   description: >
