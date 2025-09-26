@@ -36,9 +36,8 @@ class State(TypedDict):
     ai_message: str
     is_coding_question: bool
 
-# 🎯 Global counter to trigger error after 2 successful runs
+# 🎯 Global counter to track runs (crash limit removed)
 CALL_COUNTER = 0
-MAX_SUCCESSFUL_CALLS = 2
 
 # Node: Detect if query is coding-related
 def detect_query(state: State):
@@ -46,7 +45,23 @@ def detect_query(state: State):
     CALL_COUNTER += 1
 
     user_message = state.get("user_message")
-    SYSTEM_PROMPT = "Your task is to determine whether the user's query is a coding-related question."
+    SYSTEM_PROMPT = """You are a query classifier for a technical AI assistant. 
+    Analyze the user's query and determine if it's a coding/programming-related question.
+
+    Coding-related questions include:
+    - Questions about programming languages, libraries, frameworks (e.g., Python, Pydantic, FastAPI)
+    - Technical implementation questions
+    - Code examples, syntax, or usage questions
+    - Software development concepts and tools
+    - Programming best practices and patterns
+
+    Non-coding questions include:
+    - General knowledge questions
+    - Personal advice
+    - Non-technical topics
+    - Casual conversation
+
+    Classify accurately to ensure the user gets the most appropriate response."""
 
     try:
         result = client.beta.chat.completions.parse(
@@ -71,15 +86,31 @@ def route_edge(state: State) -> Literal["solve_coding_question", "solve_simple_q
     else:
         return "solve_simple_question"
 
-# Node: Solve coding question — will force error after MAX_SUCCESSFUL_CALLS
+# Node: Solve coding question with enhanced context awareness
 def solve_coding_question(state: State):
     user_message = state.get("user_message")
 
-    # 🚨 FORCE ERROR after MAX_SUCCESSFUL_CALLS
-    if CALL_COUNTER > MAX_SUCCESSFUL_CALLS:
-        raise Exception(f"🚨 Simulated crash after {MAX_SUCCESSFUL_CALLS} successful runs!")
+    # Enhanced system prompt with comprehensive context for coding questions
+    SYSTEM_PROMPT = """You are an expert programming assistant specializing in providing comprehensive, contextually rich responses to coding questions.
 
-    SYSTEM_PROMPT = "Your task is to solve the coding question of the user."
+    When answering coding/programming questions, always provide:
+
+    1. **Clear Overview**: Start with a concise explanation of what the topic/technology is and its primary purpose
+    2. **Key Features & Capabilities**: List the main features and what makes it useful
+    3. **Practical Code Examples**: Always include working code examples with proper syntax
+    4. **Common Use Cases**: Explain real-world scenarios where it's commonly used
+    5. **Benefits & Advantages**: Highlight why developers choose this technology
+    6. **Best Practices**: Include relevant tips, considerations, or common patterns
+    7. **Integration Context**: If applicable, mention how it works with other popular tools/frameworks
+
+    For Python libraries specifically:
+    - Show installation commands when relevant
+    - Demonstrate basic usage patterns with complete code snippets
+    - Include proper imports and setup
+    - Explain configuration options when applicable
+    - Mention integration with popular frameworks like FastAPI, Django, Flask, etc.
+
+    Make your response comprehensive yet accessible, providing sufficient context for developers at various skill levels to understand and apply the information effectively."""
     try:
         result = client.beta.chat.completions.parse(
             model="gpt-4o-mini",
@@ -98,7 +129,17 @@ def solve_coding_question(state: State):
 # Node: Solve simple question
 def solve_simple_question(state: State):
     user_message = state.get("user_message")
-    SYSTEM_PROMPT = "Your task is to solve the simple question of the user."
+    SYSTEM_PROMPT = """You are a helpful assistant that provides clear, accurate, and informative responses to general questions.
+
+    Guidelines for responding:
+    - Provide factual, well-structured answers
+    - Use examples when helpful to illustrate concepts
+    - Be concise but comprehensive
+    - If the question seems technical despite classification, provide a basic explanation
+    - Maintain a friendly and professional tone
+    - Structure your response logically with clear sections when appropriate
+
+    Ensure your response directly addresses the user's question with sufficient detail and context."""
 
     try:
         result = client.beta.chat.completions.parse(
@@ -128,26 +169,41 @@ graph_builder.add_edge("solve_simple_question", END)
 
 graph = graph_builder.compile()
 
-# Function to run graph with error handling
-def call_graph():
+# Function to run graph with error handling and multiple test queries
+def call_graph(query: str = "Explain me about Pydantic in Python"):
     state = {
-        "user_message": "Explain me about Pydantic in Python",
+        "user_message": query,
         "ai_message": "",
         "is_coding_question": False
     }
 
     try:
-        print("🚀 Running graph...")
+        print(f"🚀 Processing query: {query}")
         result = graph.invoke(state)
-        print("✅ Success:", result["ai_message"][:100] + "...")
+        print("✅ Success! Response preview:", result["ai_message"][:150] + "...")
+        return result
     except Exception as e:
-        print("❌ ERROR CAUGHT:", str(e))  # <-- Pure Python print, no neatlogs
+        print("❌ ERROR CAUGHT:", str(e))
+        return None
 
-# Run multiple times
+# Test with multiple diverse queries to validate fixes
 if __name__ == "__main__":
-    for i in range(5):
-        print(f"\n{'='*40}")
-        print(f"        RUN #{i+1}")
-        print('='*40)
-        call_graph()
-        time.sleep(2)
+    test_queries = [
+        "Explain me about Pydantic in Python",
+        "How do I validate data with Pydantic models?",
+        "What's the weather like today?",
+        "How to use FastAPI with Pydantic?",
+        "What are Python decorators?",
+        "Can you recommend a good restaurant?",
+        "Explain type hints in Python",
+        "What's your favorite color?"
+    ]
+    
+    for i, query in enumerate(test_queries, 1):
+        print(f"\n{'='*60}")
+        print(f"        TEST #{i} - Query Type Check")
+        print('='*60)
+        result = call_graph(query)
+        if result:
+            print(f"✓ Classification: {'Coding' if result['is_coding_question'] else 'Simple'} question")
+        time.sleep(1)  # Brief pause between tests
