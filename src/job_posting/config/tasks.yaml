@@ -29,10 +29,13 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    CRITICAL: Include a dedicated "Salary Range" section with appropriate compensation information.
+    If specific salary data is not available, include "TBD (To be determined based on industry standards and candidate experience)"
+    to ensure compliance with US labor laws requiring salary transparency.
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, salary range section, and unique company benefits. The tone should resonate with the company's culture
+    and values, aimed at attracting the right candidates. Must include salary range information for legal compliance. 
 
 
 review_and_edit_job_posting_task:
@@ -41,9 +44,12 @@ review_and_edit_job_posting_task:
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
     to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
     feedback for any necessary revisions.
+    CRITICAL: Verify that the job posting includes a "Salary Range" section for compliance with US labor laws.
+    If missing, add appropriate salary information or "TBD (To be determined based on industry standards and candidate experience)".
+    Ensure the salary section is professionally formatted and legally compliant.
   expected_output: >
     A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
-    Feedback on potential improvements and final approval for publishing. Formatted in markdown.
+    Must include a properly formatted salary range section for legal compliance. Feedback on potential improvements and final approval for publishing. Formatted in markdown.
 
 industry_analysis_task:
   description: >
