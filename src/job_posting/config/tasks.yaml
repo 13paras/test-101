@@ -19,6 +19,20 @@ research_role_requirements_task:
     A list of recommended skills, experiences, and qualities for the ideal candidate, aligned with
     the company's culture, ongoing projects, and the specific role's requirements.
 
+research_salary_compliance_task:
+  description: >
+    Research current salary ranges for the role {hiring_needs} in the relevant geographic location, 
+    specifically focusing on industry standards and legal compliance requirements. For Production Assistant 
+    roles in Los Angeles, research current market rates in the entertainment/media industry. Ensure 
+    compliance with California's pay transparency laws (SB 1162) which require employers with 15+ employees 
+    to include salary ranges in job postings. Consider factors like experience level, union guidelines if 
+    applicable, and company size. Provide a recommended salary range that is competitive and legally compliant.
+  expected_output: >
+    A comprehensive salary research report that includes: 1) Current market salary range for the specific role 
+    and location, 2) Legal compliance requirements for the jurisdiction, 3) Recommended salary range with 
+    justification, 4) Any additional compensation considerations (benefits, overtime, etc.), 5) Compliance 
+    statement language for the job posting.
+
 draft_job_posting_task:
   description: >
     Draft a job posting for the role described by the hiring manager: {hiring_needs}.
@@ -26,24 +40,33 @@ draft_job_posting_task:
     followed by a detailed role description, responsibilities, and required skills and qualifications.
     Ensure the tone aligns with the company's culture and incorporate any unique benefits or
     opportunities offered by the company. Specific benefits: {specific_benefits}.
+    IMPORTANT: Include a comprehensive compensation section with salary range that complies with 
+    pay transparency laws (especially California's requirements since this is for Los Angeles).
+    For Production Assistant roles, research current market rates and include a range of $35,000-$50,000 
+    annually based on experience level, or use industry-standard ranges appropriate for the role.
     Include a Location section as exactly:
     Location
-    Remote - Global Team
+    Los Angeles, CA
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, compensation/salary range section, and unique company benefits. The posting must 
+    comply with California pay transparency laws by including a clear salary range. The tone should 
+    resonate with the company's culture and values, aimed at attracting the right candidates. 
 
 
 review_and_edit_job_posting_task:
   description: >
     Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
-    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
-    feedback for any necessary revisions.
+    to the desired candidates and accurately reflects the role's unique benefits and opportunities.
+    CRITICAL: Verify that the job posting includes a clear salary range that complies with California pay 
+    transparency laws (SB 1162), as this position is in Los Angeles. Ensure the compensation section is 
+    prominent and includes both salary range and benefits information. If salary range is missing, add an 
+    appropriate range based on industry standards for the role. Provide feedback for any necessary revisions.
   expected_output: >
-    A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
-    Feedback on potential improvements and final approval for publishing. Formatted in markdown.
+    A polished, error-free job posting that is clear, engaging, legally compliant with California pay transparency 
+    laws, and perfectly aligned with the company's culture and values. The posting must include a visible salary 
+    range section. Feedback on potential improvements and final approval for publishing. Formatted in markdown.
 
 industry_analysis_task:
   description: >
