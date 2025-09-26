@@ -29,21 +29,26 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    CRITICAL: Include a placeholder section for salary range information that will be populated
+    by the salary compliance team. Mark clearly that salary transparency compliance is required.
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, unique company benefits, and a clearly marked salary section placeholder for compliance.
+    The tone should resonate with the company's culture and values, aimed at attracting the right candidates. 
 
 
 review_and_edit_job_posting_task:
   description: >
     Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
-    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
-    feedback for any necessary revisions.
+    to the desired candidates and accurately reflects the role's unique benefits and opportunities.
+    CRITICAL: Verify that salary transparency compliance requirements have been met and that salary information
+    is properly integrated. Ensure all legal disclaimers and compliance language is present and accurate.
+    Provide feedback for any necessary revisions.
   expected_output: >
-    A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
-    Feedback on potential improvements and final approval for publishing. Formatted in markdown.
+    A polished, error-free job posting that is clear, engaging, perfectly aligned with the company's culture and values,
+    and fully compliant with salary transparency laws. Feedback on potential improvements and final approval for publishing.
+    Formatted in markdown with complete salary and compliance information.
 
 industry_analysis_task:
   description: >
@@ -57,3 +62,35 @@ industry_analysis_task:
     A detailed analysis report that identifies major industry trends, challenges, and opportunities relevant
     to the company's domain and the specific job role. This report should provide strategic insights on positioning
     the job role and the company as an attractive choice for potential candidates.
+
+salary_compliance_analysis_task:
+  description: >
+    Analyze salary transparency law compliance requirements for the role {hiring_needs} across all relevant US jurisdictions.
+    Identify specific compliance risks for Warner Bros. Discovery based on company size and locations where the role will be posted.
+    Research and document penalties for non-compliance in key jurisdictions including California, New York, Colorado, Washington, and others.
+    Provide detailed risk assessment and recommendations for legal compliance.
+  expected_output: >
+    A comprehensive compliance risk analysis report detailing specific salary transparency requirements by jurisdiction,
+    potential penalties for non-compliance, and actionable recommendations to ensure legal adherence.
+
+salary_benchmarking_task:
+  description: >
+    Research and benchmark competitive salary ranges for the role {hiring_needs} using industry standards and market data.
+    Analyze compensation data from similar companies in the entertainment industry, particularly for production roles in Los Angeles.
+    Consider factors such as experience level, union requirements, industry standards, cost of living adjustments, and company size.
+    If insufficient data exists to establish a definitive range, provide legal justification for alternative approaches
+    including good-faith estimates or "TBD" designations where legally permissible.
+  expected_output: >
+    A detailed salary benchmarking report with recommended salary ranges, supporting market data, methodology explanation,
+    and legal justification for the proposed compensation structure. Include fallback options if primary benchmarking
+    data is insufficient.
+
+salary_integration_task:
+  description: >
+    Integrate the salary compliance analysis and benchmarking results into the job posting for {hiring_needs}.
+    Ensure the salary information is presented in a clear, compliant format that meets all legal requirements.
+    Add appropriate disclaimers and legal language as needed. Include benefits information to provide complete
+    compensation transparency as required by various jurisdictions.
+  expected_output: >
+    A complete salary and benefits section ready for integration into the job posting, formatted for legal compliance
+    and including all necessary disclaimers and supporting information.

@@ -49,6 +49,14 @@ class JobPostingCrew:
             verbose=True
         )
     
+    @agent
+    def salary_compliance_agent(self) -> Agent:
+        return Agent(
+            config=self.agents_config['salary_compliance_agent'],
+            tools=[web_search_tool, seper_dev_tool],
+            verbose=True
+        )
+    
     @task
     def research_company_culture_task(self) -> Task:
         return Task(
@@ -83,6 +91,27 @@ class JobPostingCrew:
         return Task(
             config=self.tasks_config['industry_analysis_task'],
             agent=self.research_agent()
+        )
+
+    @task
+    def salary_compliance_analysis_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['salary_compliance_analysis_task'],
+            agent=self.salary_compliance_agent()
+        )
+
+    @task
+    def salary_benchmarking_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['salary_benchmarking_task'],
+            agent=self.salary_compliance_agent()
+        )
+
+    @task
+    def salary_integration_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['salary_integration_task'],
+            agent=self.salary_compliance_agent()
         )
 
     @crew
