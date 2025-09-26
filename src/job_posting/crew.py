@@ -13,6 +13,11 @@ file_read_tool = FileReadTool(
     description='A tool to read the job description example file.'
 )
 
+production_assistant_template_tool = FileReadTool(
+    file_path='production_assistant_template.md',
+    description='A tool to read the legal-compliant Production Assistant job posting template with salary range requirements.'
+)
+
 class ResearchRoleRequirements(BaseModel):
     """Research role requirements model"""
     skills: List[str] = Field(..., description="List of recommended skills for the ideal candidate aligned with the company's culture, ongoing projects, and the specific role's requirements.")
@@ -37,7 +42,7 @@ class JobPostingCrew:
     def writer_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['writer_agent'],
-            tools=[web_search_tool, seper_dev_tool, file_read_tool],
+            tools=[web_search_tool, seper_dev_tool, file_read_tool, production_assistant_template_tool],
             verbose=True
         )
     
@@ -45,7 +50,7 @@ class JobPostingCrew:
     def review_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['review_agent'],
-            tools=[web_search_tool, seper_dev_tool, file_read_tool],
+            tools=[web_search_tool, seper_dev_tool, file_read_tool, production_assistant_template_tool],
             verbose=True
         )
     

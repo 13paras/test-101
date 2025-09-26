@@ -15,9 +15,16 @@ research_role_requirements_task:
     and qualities the ideal candidate should possess for the role. Consider the company's current projects,
     its competitive landscape, and industry trends. Prepare a list of recommended job requirements
     and qualifications that align with the company's needs and values.
+    
+    SALARY RESEARCH REQUIREMENTS:
+    - Research current industry salary standards for the specific role and location
+    - For Production Assistant roles in Los Angeles: Research typical range ($44,000-$54,000 annually, $21-26/hour)
+    - Consider company size, industry sector, and role level when determining appropriate range
+    - Provide justification for the proposed salary range based on market data
   expected_output: >
     A list of recommended skills, experiences, and qualities for the ideal candidate, aligned with
-    the company's culture, ongoing projects, and the specific role's requirements.
+    the company's culture, ongoing projects, and the specific role's requirements. Must include
+    researched salary range recommendation with market justification for legal compliance.
 
 draft_job_posting_task:
   description: >
@@ -29,10 +36,16 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    
+    COMPLIANCE REQUIREMENTS:
+    - MUST include a salary range section that complies with US jurisdictional transparency requirements
+    - Research industry standards for the specific role and location to determine appropriate salary range
+    - If exact salary range cannot be determined, mark as "Salary Range: TBD - Will be determined based on experience and qualifications" with legal justification
+    - Ensure the salary range reflects current market conditions and is competitive for the role level
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, salary range (MANDATORY for compliance), and unique company benefits. The tone should resonate with the company's culture
+    and values, aimed at attracting the right candidates. The salary range must be included to meet legal transparency requirements. 
 
 
 review_and_edit_job_posting_task:
@@ -41,9 +54,16 @@ review_and_edit_job_posting_task:
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
     to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
     feedback for any necessary revisions.
+    
+    COMPLIANCE VALIDATION:
+    - MANDATORY: Verify that the job posting includes a salary range section for legal compliance
+    - Ensure salary range is realistic and competitive based on industry standards
+    - If salary range is marked as TBD, ensure proper legal justification is provided
+    - Validate that all US jurisdictional transparency requirements are met
   expected_output: >
     A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
-    Feedback on potential improvements and final approval for publishing. Formatted in markdown.
+    Must include a compliant salary range section. Feedback on potential improvements and final approval for publishing. 
+    Formatted in markdown with confirmed legal compliance for salary transparency requirements.
 
 industry_analysis_task:
   description: >
