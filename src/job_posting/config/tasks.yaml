@@ -29,21 +29,28 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    CRITICAL REQUIREMENT: Include a salary range section that either provides a specific salary range
+    based on industry standards for the role, or if specific range cannot be determined, include:
+    "Salary Range: TBD (Currently under review to ensure competitive market rates)"
+    This is essential for legal compliance and transparency.
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, salary range (either specific range or TBD with justification), and unique company benefits. 
+    The tone should resonate with the company's culture and values, aimed at attracting the right candidates.
+    The salary range section must be included for compliance and transparency. 
 
 
 review_and_edit_job_posting_task:
   description: >
     Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
-    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
-    feedback for any necessary revisions.
+    to the desired candidates and accurately reflects the role's unique benefits and opportunities. 
+    CRITICAL VALIDATION: Ensure the job posting includes a salary range section for legal compliance and transparency.
+    If missing, add appropriate salary range or TBD with justification. Provide feedback for any necessary revisions.
   expected_output: >
     A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
-    Feedback on potential improvements and final approval for publishing. Formatted in markdown.
+    Must include salary range information for compliance. Feedback on potential improvements and final approval for publishing. 
+    Formatted in markdown.
 
 industry_analysis_task:
   description: >
