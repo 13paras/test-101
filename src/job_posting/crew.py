@@ -65,6 +65,13 @@ class JobPostingCrew:
         )
 
     @task
+    def salary_research_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['salary_research_task'],
+            agent=self.research_agent()
+        )
+
+    @task
     def draft_job_posting_task(self) -> Task:
         return Task(
             config=self.tasks_config['draft_job_posting_task'],

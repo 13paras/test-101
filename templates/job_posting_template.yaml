@@ -1,0 +1,100 @@
+job_posting_template:
+  company_name:
+    type: string
+    description: "Name of the hiring company"
+    required: true
+  
+  job_title:
+    type: string
+    description: "Title of the position"
+    required: true
+  
+  location:
+    type: string
+    description: "Job location (e.g., Remote - Global Team, Los Angeles, CA)"
+    required: true
+  
+  job_summary:
+    type: string
+    description: "Brief overview of the role and its purpose"
+    required: true
+  
+  responsibilities:
+    type: list
+    description: "List of key responsibilities for the position"
+    required: true
+  
+  requirements:
+    type: list
+    description: "List of qualifications, skills, and experience required"
+    required: true
+  
+  salary_range:
+    type: object
+    description: "Salary range for the position (MANDATORY for compliance)"
+    required: true
+    fields:
+      minimum:
+        type: number
+        description: "Minimum salary amount"
+        required: true
+      maximum:
+        type: number
+        description: "Maximum salary amount"
+        required: true
+      currency:
+        type: string
+        description: "Currency (e.g., USD)"
+        required: true
+        default: "USD"
+      period:
+        type: string
+        description: "Payment period (e.g., per year, per hour)"
+        required: true
+        default: "per year"
+      display_format:
+        type: string
+        description: "How to display the range (e.g., '$45,000 - $60,000 per year')"
+        required: true
+    validation_rules:
+      - "Salary range must be provided for compliance with transparency laws"
+      - "Minimum salary must be less than maximum salary"
+      - "Range should be based on market research and industry standards"
+      - "Display format must include specific dollar amounts"
+  
+  benefits:
+    type: list
+    description: "List of benefits offered to employees"
+    required: false
+  
+  how_to_apply:
+    type: string
+    description: "Instructions for applying to the position"
+    required: true
+  
+  equal_opportunity_statement:
+    type: string
+    description: "Equal opportunity employer statement"
+    required: true
+    default: "We are an equal opportunity employer. We celebrate diversity and are committed to creating an inclusive environment for all employees."
+
+validation_rules:
+  - name: "salary_range_required"
+    description: "Salary range must be present in all job postings"
+    severity: "error"
+    check: "job_posting.salary_range is not None and job_posting.salary_range != ''"
+  
+  - name: "salary_range_format"
+    description: "Salary range must include specific dollar amounts"
+    severity: "error"
+    check: "salary_range contains '$' and contains numbers"
+  
+  - name: "salary_range_reasonable"
+    description: "Maximum salary must be greater than minimum salary"
+    severity: "error"
+    check: "salary_range.maximum > salary_range.minimum"
+  
+  - name: "market_based_salary"
+    description: "Salary range should be based on market research"
+    severity: "warning"
+    check: "salary research task completed successfully"

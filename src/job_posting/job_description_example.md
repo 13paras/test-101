@@ -25,6 +25,11 @@ As a Senior Software Engineer at InnovateTech, you'll lead the development of sc
 - Excellent problem-solving skills and a passion for technology.
 - Strong communication and teamwork abilities.
 
+### Compensation
+**Salary Range:** $120,000 - $160,000 per year
+
+The actual salary offered will depend on experience, qualifications, and internal equity considerations. This range reflects our commitment to competitive compensation based on current market standards for senior engineering roles.
+
 ### Benefits
 - Competitive salary and equity package.
 - Comprehensive health, dental, and vision insurance.

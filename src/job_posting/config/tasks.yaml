@@ -19,6 +19,22 @@ research_role_requirements_task:
     A list of recommended skills, experiences, and qualities for the ideal candidate, aligned with
     the company's culture, ongoing projects, and the specific role's requirements.
 
+salary_research_task:
+  description: >
+    Research industry-standard salary ranges for the role: {hiring_needs}. 
+    Analyze compensation data from reliable sources including industry salary surveys, 
+    job boards, and market research reports. Consider factors such as:
+    - Geographic location and cost of living
+    - Industry standards for similar roles
+    - Required experience level and skills
+    - Company size and market position
+    Provide a competitive salary range that complies with legal transparency requirements
+    and reflects current market conditions. The salary range should be specific and reasonable.
+  expected_output: >
+    A well-researched salary range with justification based on market data, including
+    the minimum and maximum compensation figures. The range should be competitive and
+    compliant with salary transparency laws.
+
 draft_job_posting_task:
   description: >
     Draft a job posting for the role described by the hiring manager: {hiring_needs}.
@@ -29,21 +45,37 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    
+    MANDATORY: Include a clearly defined "Compensation" or "Salary Range" section with the 
+    researched salary range. This is required for legal compliance and transparency.
+    The salary range must be specific (e.g., "$45,000 - $60,000 per year") and based on 
+    the salary research findings.
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, unique company benefits, and a MANDATORY salary range section. The salary range 
+    must be clearly stated and comply with transparency requirements. The tone should resonate with 
+    the company's culture and values, aimed at attracting the right candidates. 
 
 
 review_and_edit_job_posting_task:
   description: >
     Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
-    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
-    feedback for any necessary revisions.
+    to the desired candidates and accurately reflects the role's unique benefits and opportunities. 
+    
+    CRITICAL VALIDATION: Verify that the job posting includes a clearly defined salary range section.
+    This is a mandatory compliance requirement. If the salary range is missing or unclear, the posting
+    MUST be rejected and sent back for revision. The salary range must:
+    - Be clearly labeled (e.g., "Compensation", "Salary Range", or "Pay Range")
+    - Include specific dollar amounts (e.g., "$45,000 - $60,000 per year")
+    - Be reasonable and based on market research
+    
+    Provide feedback for any necessary revisions.
   expected_output: >
     A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
-    Feedback on potential improvements and final approval for publishing. Formatted in markdown.
+    The posting MUST include a compliant salary range section. If the salary range is missing, provide specific 
+    feedback requiring its addition before approval. Feedback on potential improvements and final approval for 
+    publishing only if all requirements including salary range are met. Formatted in markdown.
 
 industry_analysis_task:
   description: >

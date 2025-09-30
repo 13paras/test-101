@@ -2,6 +2,8 @@
 ## Introduction
 This project demonstrates the use of the CrewAI framework to automate the creation of job posting. CrewAI orchestrates autonomous AI agents, enabling them to collaborate and execute complex tasks efficiently.
 
+**✨ New: Salary Range Compliance** - All job postings now include mandatory salary ranges for legal compliance and transparency. See [Quick Start Guide](QUICK_START_SALARY_COMPLIANCE.md) for details.
+
 By [@joaomdmoura](https://x.com/joaomdmoura)
 
 - [CrewAI Framework](#crewai-framework)
@@ -33,6 +35,18 @@ It uses GPT-4o by default so you should have access to that to run it.
   - `src/job_posting/config/agents.yaml`: Configuration file for defining agents.
   - `src/job_posting/config/tasks.yaml`: Configuration file for defining tasks.
   - `src/job_posting/tools`: Contains tool classes used by the agents.
+
+### Salary Range Compliance
+The system now enforces mandatory salary ranges in all job postings:
+- **Automatic Research**: AI agents research industry-standard salary ranges
+- **Validation**: Built-in validation ensures salary ranges are included and properly formatted
+- **Compliance**: Meets legal transparency requirements in various jurisdictions
+- **Templates**: Structured templates with salary range fields
+- **Testing**: Comprehensive test suite validates the implementation
+
+For detailed information, see:
+- [Implementation Guide](SALARY_RANGE_IMPLEMENTATION.md) - Complete technical documentation
+- [Quick Start Guide](QUICK_START_SALARY_COMPLIANCE.md) - Quick reference for users and developers
 
 ## License
 This project is released under the MIT License.
