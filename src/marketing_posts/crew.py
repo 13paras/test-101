@@ -7,6 +7,7 @@ from crewai.project import CrewBase, agent, crew, task
 
 # Check our tools documentations for more information on how to use them
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool
+from marketing_posts.tools.weather_tool import get_current_weather
 from pydantic import BaseModel, Field
 
 class MarketStrategy(BaseModel):
@@ -60,6 +61,15 @@ class MarketingPostsCrew():
 			memory=False,
 		)
 
+	@agent
+	def llm_call_session(self) -> Agent:
+		return Agent(
+			config=self.agents_config['llm_call_session'],
+			tools=[get_current_weather],
+			verbose=True,
+			memory=False,
+		)
+
 	@task
 	def research_task(self) -> Task:
 		return Task(
@@ -97,6 +107,13 @@ class MarketingPostsCrew():
 			agent=self.creative_content_creator(),
    		context=[self.marketing_strategy_task(), self.campaign_idea_task()],
 			output_json=Copy
+		)
+
+	@task
+	def weather_inquiry_task(self) -> Task:
+		return Task(
+			config=self.tasks_config['weather_inquiry_task'],
+			agent=self.llm_call_session()
 		)
 
 	@crew

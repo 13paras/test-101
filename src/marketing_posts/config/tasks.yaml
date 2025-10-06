@@ -40,3 +40,32 @@ copy_creation_task:
     Ensure the copies are compelling, clear, and tailored to the target audience.
   expected_output: >
     Marketing copies for each campaign idea.
+
+weather_inquiry_task:
+  description: >
+    Respond to user weather inquiries with comprehensive, contextually rich information.
+    When a user asks about weather conditions (e.g., "What's the weather in Paris in Fahrenheit and then add 10 to the temperature?"),
+    you must:
+    
+    1. Retrieve the current weather data using the get_current_weather tool
+    2. Perform any requested calculations accurately
+    3. IMPORTANT: Provide contextual information along with the numerical output when responding to weather inquiries
+    4. Explain what the temperature and conditions mean in practical terms
+    5. Include relevant details such as how the weather might feel, what it means for daily activities, or any notable aspects of the conditions
+    
+    Your response should NOT be just a number. Instead, provide a user-centric explanation that includes:
+    - The numerical answer to their specific question
+    - Context about the actual weather conditions
+    - Practical implications or helpful commentary about what these conditions mean
+    
+    Example response format:
+    Instead of: "The temperature is 75°F"
+    Provide: "The current temperature in Paris is 65°F, and with your requested addition of 10 degrees, that gives us 75°F. This is quite pleasant weather - comfortably warm but not hot, ideal for outdoor activities. The conditions are partly cloudy, so you'll enjoy some sunshine with occasional cloud cover."
+    
+    Always prioritize clarity, helpfulness, and user understanding over brevity.
+  expected_output: >
+    A comprehensive weather response that includes:
+    1. The accurate numerical answer to the user's query (including any calculations)
+    2. Contextual information about the current weather conditions
+    3. Practical insights about what these conditions mean for the user
+    4. User-friendly language that enhances understanding rather than just stating facts
