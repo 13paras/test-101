@@ -1,0 +1,47 @@
+weather_inquiry_task:
+  description: >
+    Process user weather queries and provide comprehensive responses with context
+  expected_output: >
+    A detailed weather report that includes:
+    - Accurate temperature data in the requested unit
+    - Current weather conditions description
+    - Contextual information about the temperature (seasonal comparison, comfort level)
+    - Clear explanation of any calculations or conversions performed
+    - Natural, conversational response format
+  
+  agent: llm_call_session
+  
+  context:
+    - The user expects more than just numerical data
+    - Responses should be informative and educational
+    - Context helps users make better decisions about their activities
+  
+  validation_criteria:
+    - Temperature data must be accurate
+    - Response must include at least 2-3 contextual details
+    - Language should be clear and user-friendly
+    - Calculations (if any) must be explained clearly
+  
+  examples:
+    - input: "What's the weather in Paris in Fahrenheit?"
+      output: >
+        The current temperature in Paris is 68°F (20°C). The weather is partly 
+        cloudy with a light breeze. This is quite pleasant and typical for Paris 
+        in spring, making it comfortable for outdoor activities. You might want 
+        to bring a light jacket for the evening when temperatures drop slightly.
+    
+    - input: "What's the weather in Paris in Fahrenheit and then add 10 to the temperature?"
+      output: >
+        The current temperature in Paris is 68°F. With 10 degrees added, that 
+        would be 78°F. The actual conditions in Paris are partly cloudy with 
+        mild temperatures - quite comfortable for this time of year. The calculated 
+        temperature of 78°F would feel like a warm summer day, but remember the 
+        actual temperature is the more moderate 68°F, which is typical for Paris 
+        in spring.
+
+general_inquiry_task:
+  description: >
+    Handle general information requests with comprehensive and contextual responses
+  expected_output: >
+    Clear, informative answers that provide both facts and relevant context
+  agent: llm_call_session
