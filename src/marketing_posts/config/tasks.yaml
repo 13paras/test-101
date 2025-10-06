@@ -40,3 +40,23 @@ copy_creation_task:
     Ensure the copies are compelling, clear, and tailored to the target audience.
   expected_output: >
     Marketing copies for each campaign idea.
+
+weather_inquiry:
+  description: >
+    What's the weather in {location} in {temperature_unit}? 
+    
+    IMPORTANT: Please provide the temperature along with relevant context and explanations.
+    Include details such as:
+    - Whether this temperature is typical for the season
+    - How it compares to recent weather patterns
+    - What this temperature means in practical terms (e.g., "pleasantly warm", "quite cold", "uncomfortably hot")
+    - Any recommendations for appropriate clothing or activities
+    - Additional relevant weather conditions (humidity, wind, precipitation) if significant
+    
+    Your response should be informative and help the user understand the weather situation,
+    not just provide a raw number.
+  expected_output: >
+    A comprehensive weather report that includes the temperature in the requested unit
+    along with contextual information about what that temperature means, how it compares
+    to normal conditions, and practical advice for the user. The response should be
+    conversational and helpful, making the weather data meaningful and actionable.
