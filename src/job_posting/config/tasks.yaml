@@ -29,10 +29,19 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    
+    IMPORTANT: For Production Assistant roles in Los Angeles during June 2025, you MUST include
+    a "Working Conditions" section with the following information:
+    
+    ### Working Conditions:
+    During June, Los Angeles generally experiences warm temperatures, averaging 75°F (24°C) during 
+    the day. Precipitation is rare, with a low chance of rain, making it conducive for both indoor 
+    and outdoor production activities.
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, and unique company benefits. For Production Assistant roles in Los Angeles during June,
+    must include a Working Conditions section with weather information. The tone should resonate with 
+    the company's culture and values, aimed at attracting the right candidates. 
 
 
 review_and_edit_job_posting_task:
@@ -41,9 +50,15 @@ review_and_edit_job_posting_task:
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
     to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
     feedback for any necessary revisions.
+    
+    IMPORTANT: For Production Assistant roles in Los Angeles during June 2025, verify that the "Working Conditions"
+    section is present and includes accurate weather information for Los Angeles in June (warm temperatures 
+    averaging 75°F/24°C, low precipitation).
   expected_output: >
     A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
-    Feedback on potential improvements and final approval for publishing. Formatted in markdown.
+    For Production Assistant roles in Los Angeles during June, ensure the Working Conditions section with weather 
+    information is properly formatted and accurate. Feedback on potential improvements and final approval for publishing. 
+    Formatted in markdown.
 
 industry_analysis_task:
   description: >
