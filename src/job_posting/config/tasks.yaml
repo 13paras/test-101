@@ -26,23 +26,29 @@ draft_job_posting_task:
     followed by a detailed role description, responsibilities, and required skills and qualifications.
     Ensure the tone aligns with the company's culture and incorporate any unique benefits or
     opportunities offered by the company. Specific benefits: {specific_benefits}.
+    IMPORTANT: Include a Compensation section that displays the salary range: {salary_range}.
+    This is required for legal compliance and salary transparency regulations.
     Include a Location section as exactly:
     Location
     Remote - Global Team
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, compensation/salary information, and unique company benefits. The tone should resonate with the company's culture
+    and values, aimed at attracting the right candidates. The posting MUST include a clearly visible Compensation section
+    with the provided salary range to ensure compliance with salary transparency laws. 
 
 
 review_and_edit_job_posting_task:
   description: >
     Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
-    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
-    feedback for any necessary revisions.
+    to the desired candidates and accurately reflects the role's unique benefits and opportunities. 
+    CRITICAL: Verify that the job posting includes a clearly visible Compensation/Salary section with the salary range {salary_range}.
+    This is mandatory for compliance with salary transparency regulations in US jurisdictions. If missing, add it immediately.
+    Provide feedback for any necessary revisions.
   expected_output: >
     A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
+    The posting MUST include a Compensation section with salary information for legal compliance.
     Feedback on potential improvements and final approval for publishing. Formatted in markdown.
 
 industry_analysis_task:
