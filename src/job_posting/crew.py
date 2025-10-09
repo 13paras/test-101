@@ -49,6 +49,22 @@ class JobPostingCrew:
             verbose=True
         )
     
+    @agent
+    def feedback_analyst_agent(self) -> Agent:
+        return Agent(
+            config=self.agents_config['feedback_analyst_agent'],
+            tools=[web_search_tool, seper_dev_tool],
+            verbose=True
+        )
+    
+    @agent
+    def diversity_specialist_agent(self) -> Agent:
+        return Agent(
+            config=self.agents_config['diversity_specialist_agent'],
+            tools=[web_search_tool, seper_dev_tool],
+            verbose=True
+        )
+    
     @task
     def research_company_culture_task(self) -> Task:
         return Task(
@@ -83,6 +99,20 @@ class JobPostingCrew:
         return Task(
             config=self.tasks_config['industry_analysis_task'],
             agent=self.research_agent()
+        )
+
+    @task
+    def feedback_gathering_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['feedback_gathering_task'],
+            agent=self.feedback_analyst_agent()
+        )
+
+    @task
+    def diversity_impact_analysis_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['diversity_impact_analysis_task'],
+            agent=self.diversity_specialist_agent()
         )
 
     @crew

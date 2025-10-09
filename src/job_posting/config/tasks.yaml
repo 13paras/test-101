@@ -24,25 +24,50 @@ draft_job_posting_task:
     Draft a job posting for the role described by the hiring manager: {hiring_needs}.
     Use the insights on {company_description} to start with a compelling introduction,
     followed by a detailed role description, responsibilities, and required skills and qualifications.
+    
+    IMPORTANT REQUIREMENTS:
+    - Use SIMPLE, CLEAR language that anyone can understand, regardless of educational background
+    - AVOID industry jargon and technical terms whenever possible
+    - Make the role sound APPROACHABLE and WELCOMING to diverse candidates
+    - Use "helping the team with daily production activities and tasks" instead of complex operational language
+    - Use "assisting the team in editing videos to create fantastic content" when describing video editing work
+    - Keep the tone PROFESSIONAL but FRIENDLY with a personal touch
+    - Highlight what it's REALLY LIKE to work at the company (day-to-day experiences, team culture, growth opportunities)
+    - Ensure content is accessible to candidates with varying educational backgrounds
+    
     Ensure the tone aligns with the company's culture and incorporate any unique benefits or
     opportunities offered by the company. Specific benefits: {specific_benefits}.
     Include a Location section as exactly:
     Location
     Remote - Global Team
   expected_output: >
-    A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    A detailed, engaging job posting written in simple, accessible language that includes an introduction, 
+    role description, responsibilities, requirements, and unique company benefits. The posting should be 
+    welcoming to diverse candidates, avoid jargon, and include personal touches about what it's like to 
+    work at the company. The tone should be professional yet friendly and approachable. 
 
 
 review_and_edit_job_posting_task:
   description: >
     Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
-    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
-    feedback for any necessary revisions.
+    to the desired candidates and accurately reflects the role's unique benefits and opportunities.
+    
+    CRITICAL REVIEW CRITERIA:
+    - Verify ALL language is SIMPLE and accessible (8th-grade reading level or below)
+    - Remove ANY industry jargon or technical terms that could confuse candidates
+    - Ensure the posting feels WELCOMING and APPROACHABLE to diverse candidates
+    - Check that specific phrases are used: "helping the team with daily production activities and tasks" and 
+      "assisting the team in editing videos to create fantastic content"
+    - Confirm the tone is professional but friendly with personal touches
+    - Verify it appeals to candidates with varying educational backgrounds
+    - Ensure it includes authentic details about working at the company
+    
+    Provide feedback for any necessary revisions.
   expected_output: >
-    A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
+    A polished, error-free job posting written in simple, jargon-free language that is clear, engaging, 
+    welcoming to diverse candidates, and perfectly aligned with the company's culture and values.
+    The posting should be accessible to candidates with varying educational backgrounds.
     Feedback on potential improvements and final approval for publishing. Formatted in markdown.
 
 industry_analysis_task:
@@ -57,3 +82,38 @@ industry_analysis_task:
     A detailed analysis report that identifies major industry trends, challenges, and opportunities relevant
     to the company's domain and the specific job role. This report should provide strategic insights on positioning
     the job role and the company as an attractive choice for potential candidates.
+
+feedback_gathering_task:
+  description: >
+    Analyze the finalized job posting for the role {hiring_needs} from the perspective of potential applicants
+    with diverse backgrounds. Simulate feedback from candidates with varying educational levels, 
+    career stages, and backgrounds to assess:
+    - Clarity and accessibility of the language
+    - Whether the posting feels welcoming and inclusive
+    - If any terms or phrases might be confusing or intimidating
+    - The overall approachability of the role description
+    - Whether candidates from non-traditional backgrounds would feel encouraged to apply
+    
+    Provide specific recommendations for improvement based on this simulated feedback.
+  expected_output: >
+    A comprehensive feedback report that includes simulated perspectives from diverse potential applicants,
+    identifying any language barriers, clarity issues, or elements that might discourage diverse candidates.
+    Include specific, actionable recommendations for making the posting more accessible and welcoming.
+
+diversity_impact_analysis_task:
+  description: >
+    Evaluate the job posting for the role {hiring_needs} to determine its potential to attract a wider
+    range of diverse candidates. Analyze:
+    - Language accessibility for candidates with varying educational backgrounds
+    - Removal of unnecessary barriers (like jargon or overly technical requirements)
+    - Inclusivity of the tone and messaging
+    - Whether the posting appeals to candidates from non-traditional career paths
+    - Potential to attract candidates from underrepresented groups
+    
+    Compare this posting approach to industry standards and provide metrics or indicators
+    of how well this posting is likely to perform in attracting diverse applicants.
+  expected_output: >
+    A detailed diversity impact analysis that evaluates the posting's accessibility and inclusivity.
+    Include specific metrics, comparisons to industry standards, and predictions about the breadth
+    of diverse candidates likely to apply. Provide a summary of key improvements that enhance
+    diversity appeal.
