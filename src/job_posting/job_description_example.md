@@ -11,6 +11,9 @@ Remote - Global Team
 ### Job Summary
 As a Senior Software Engineer at InnovateTech, you'll lead the development of scalable software solutions that revolutionize how businesses interact with technology. You'll collaborate with cross-functional teams to drive projects from conception to deployment, ensuring high-quality and innovative outcomes.
 
+### Salary Range
+$120,000 - $180,000 per year, commensurate with experience and qualifications. This range reflects our commitment to competitive compensation based on industry standards, candidate expertise, and market conditions.
+
 ### Responsibilities
 - Design, develop, and implement high-quality software solutions that align with our strategic direction.
 - Lead technical discussions and decision-making processes to drive technology forward.
