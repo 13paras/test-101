@@ -1,42 +1,52 @@
-# Amazing Job Description Example
+# Production Assistant - Warner Bros. Discovery
 
 ## Company Overview
-At InnovateTech, we're at the forefront of digital transformation, leveraging cutting-edge technologies to create impactful solutions. Our culture thrives on innovation, collaboration, and a commitment to excellence. Join us to be a part of a dynamic team shaping the future of tech.
+Warner Bros. Discovery is a premier global media and entertainment company, offering audiences the world's most differentiated and complete portfolio of content, brands and franchises across television, film, sports, news, streaming and gaming. We're home to the world's best storytellers, creating world-class products for consumers.
 
-## Job Title: Senior Software Engineer
+## Job Title: Production Assistant
 
 ### Location
-Remote - Global Team
+Los Angeles, CA
 
 ### Job Summary
-As a Senior Software Engineer at InnovateTech, you'll lead the development of scalable software solutions that revolutionize how businesses interact with technology. You'll collaborate with cross-functional teams to drive projects from conception to deployment, ensuring high-quality and innovative outcomes.
+Warner Bros. Discovery is seeking a dedicated and enthusiastic Production Assistant to join our TV production team for an exciting project starting in June 2025. This is an excellent opportunity for someone looking to gain hands-on experience in television production while working alongside industry-leading professionals.
 
 ### Responsibilities
-- Design, develop, and implement high-quality software solutions that align with our strategic direction.
-- Lead technical discussions and decision-making processes to drive technology forward.
-- Mentor junior engineers, providing guidance and support to foster a culture of excellence and growth.
-- Collaborate with stakeholders across the company to understand requirements and deliver beyond expectations.
-- Stay abreast of industry trends and emerging technologies to incorporate best practices into our workflows.
+- Assist production staff with day-to-day operations on set
+- Support the production team with administrative tasks, including scheduling and coordination
+- Help with equipment setup and breakdown
+- Manage distribution of scripts, call sheets, and other production documents
+- Coordinate talent and crew needs on set
+- Assist with maintaining organized production areas and ensuring a safe working environment
+- Run errands and provide general support to the production team as needed
+- Help facilitate communication between different departments
+- Support post-production coordination and file management
+
+### Salary Range
+$42,000 - $55,000 annually, commensurate with experience
 
 ### Requirements
-- Bachelor's degree in Computer Science, Engineering, or related field.
-- 5+ years of experience in software development, with a strong background in [Specific Technology/Programming Language].
-- Proven track record of leading successful projects from inception to completion.
-- Excellent problem-solving skills and a passion for technology.
-- Strong communication and teamwork abilities.
+- High school diploma or equivalent; Bachelor's degree in Film, Media Studies, or related field preferred
+- Previous experience in film or television production is a plus but not required
+- Strong organizational and multitasking skills
+- Excellent communication and interpersonal abilities
+- Ability to work long hours and adapt to changing schedules
+- Professional attitude and ability to work well under pressure
+- Valid driver's license and reliable transportation
+- Flexibility to work early mornings, late evenings, and weekends as production demands
 
 ### Benefits
-- Competitive salary and equity package.
-- Comprehensive health, dental, and vision insurance.
-- Unlimited PTO to promote work-life balance.
-- Remote work flexibility.
-- Professional development stipends.
-- Monthly wellness allowances.
-- Inclusive and dynamic work culture.
+- Weekly pay for consistent cash flow
+- Employee meals provided during production days
+- Comprehensive healthcare coverage
+- Opportunity to work with industry-leading professionals
+- Hands-on experience in television production
+- Potential for career growth within Warner Bros. Discovery
+- Networking opportunities with entertainment industry professionals
 
 ### How to Apply
-Please submit your resume, cover letter, and any relevant portfolio links to careers@innovatetech.com with the subject "Senior Software Engineer Application". We're excited to hear from you!
+Please submit your resume and a brief cover letter explaining your interest in television production to careers@wbd.com with the subject line "Production Assistant Application - June 2025". We look forward to hearing from you!
 
 ---
 
-InnovateTech is an equal opportunity employer. We celebrate diversity and are committed to creating an inclusive environment for all employees.
+Warner Bros. Discovery is an equal opportunity employer. We celebrate diversity and are committed to creating an inclusive environment for all employees.
