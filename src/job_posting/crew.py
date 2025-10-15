@@ -18,6 +18,7 @@ class ResearchRoleRequirements(BaseModel):
     skills: List[str] = Field(..., description="List of recommended skills for the ideal candidate aligned with the company's culture, ongoing projects, and the specific role's requirements.")
     experience: List[str] = Field(..., description="List of recommended experience for the ideal candidate aligned with the company's culture, ongoing projects, and the specific role's requirements.")
     qualities: List[str] = Field(..., description="List of recommended qualities for the ideal candidate aligned with the company's culture, ongoing projects, and the specific role's requirements.")
+    salary_range: str = Field(..., description="Market-based salary range recommendation for this role (e.g., '$60,000 - $80,000 per year'). If specific data is unavailable, provide 'Competitive salary based on experience'.")
 
 @CrewBase
 class JobPostingCrew:
