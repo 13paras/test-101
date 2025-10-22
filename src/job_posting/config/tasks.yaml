@@ -26,12 +26,13 @@ draft_job_posting_task:
     followed by a detailed role description, responsibilities, and required skills and qualifications.
     Ensure the tone aligns with the company's culture and incorporate any unique benefits or
     opportunities offered by the company. Specific benefits: {specific_benefits}.
+    IMPORTANT: Include the salary range prominently in the compensation/benefits section: {salary_range}.
     Include a Location section as exactly:
     Location
     Remote - Global Team
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
+    requirements, salary range, and unique company benefits. The tone should resonate with the company's culture
     and values, aimed at attracting the right candidates. 
 
 
