@@ -24,6 +24,8 @@ draft_job_posting_task:
     Draft a job posting for the role described by the hiring manager: {hiring_needs}.
     Use the insights on {company_description} to start with a compelling introduction,
     followed by a detailed role description, responsibilities, and required skills and qualifications.
+    After the skills and qualifications section, include a Salary Range section with the following:
+    Salary Range: {salary_range}
     Ensure the tone aligns with the company's culture and incorporate any unique benefits or
     opportunities offered by the company. Specific benefits: {specific_benefits}.
     Include a Location section as exactly:
@@ -31,19 +33,20 @@ draft_job_posting_task:
     Remote - Global Team
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
+    requirements, salary range, and unique company benefits. The tone should resonate with the company's culture
     and values, aimed at attracting the right candidates. 
 
 
 review_and_edit_job_posting_task:
   description: >
     Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,
-    and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
+    and alignment with the company's culture and values. Verify that the salary range section is included and
+    properly formatted after the skills and qualifications section. Edit and refine the content, ensuring it speaks directly
     to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
     feedback for any necessary revisions.
   expected_output: >
     A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
-    Feedback on potential improvements and final approval for publishing. Formatted in markdown.
+    Must include a properly formatted salary range section. Feedback on potential improvements and final approval for publishing. Formatted in markdown.
 
 industry_analysis_task:
   description: >
