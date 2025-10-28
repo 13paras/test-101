@@ -81,7 +81,7 @@ def get_model_info(serialized: Dict[str, Any]) -> Dict[str, str]:
             model_info["model_name"] = model_info["provider"]
 
     except Exception as e:
-        logging.warning(f"Error extracting model info: {e}")
+        logging.warning(f"[Neatlogs] Error extracting model info | Error: {type(e).__name__} | Details: {str(e)}")
 
     return model_info
 
@@ -154,9 +154,7 @@ class NeatlogsLangchainCallbackHandler(BaseCallbackHandler):
             logging.info(
                 "Neatlogs: Created temporary tracker for LangChain callback handler")
         elif not tracker:
-            logging.warning(
-                "Neatlogs Tracker not initialized. Please call neatlogs.init(api_key=...) to enable automatic patching, "
-                "or ensure a tracker is already initialized.")
+            logging.warning("[Neatlogs] Tracker not initialized | Action: Call neatlogs.init(api_key=...) to enable automatic patching")
 
         self.tracker = tracker
         self._api_key = api_key
@@ -261,7 +259,7 @@ class NeatlogsLangchainCallbackHandler(BaseCallbackHandler):
                             {"role": "user", "content": str(prompt)})
                 span.messages = messages
         except Exception as e:
-            logging.error(f"Error in Neatlogs on_llm_start: {e}")
+            logging.error(f"[Neatlogs] Error in callback handler | Handler: on_llm_start | Error: {type(e).__name__} | Details: {str(e)}")
 
     def on_llm_end(self, response: LLMResult, *, run_id: UUID, **kwargs: Any) -> None:
         try:
@@ -282,7 +280,7 @@ class NeatlogsLangchainCallbackHandler(BaseCallbackHandler):
 
             self._end_span(run_id)
         except Exception as e:
-            logging.error(f"Error in Neatlogs on_llm_end: {e}")
+            logging.error(f"[Neatlogs] Error in callback handler | Handler: on_llm_end | Error: {type(e).__name__} | Details: {str(e)}")
         finally:
             release_patching()
 
@@ -310,7 +308,7 @@ class NeatlogsLangchainCallbackHandler(BaseCallbackHandler):
                         for msg in messages[0]
                     ]
         except Exception as e:
-            logging.error(f"Error in Neatlogs on_chat_model_start: {e}")
+            logging.error(f"[Neatlogs] Error in callback handler | Handler: on_chat_model_start | Error: {type(e).__name__} | Details: {str(e)}")
 
     def on_chain_start(self, serialized: Dict[str, Any], inputs: Dict[str, Any], *, run_id: UUID, parent_run_id: Optional[UUID] = None, **kwargs: Any) -> None:
         try:
@@ -324,7 +322,7 @@ class NeatlogsLangchainCallbackHandler(BaseCallbackHandler):
             if should_track_span("chain", attributes):
                 self._start_span(run_id, parent_run_id, "chain", attributes)
         except Exception as e:
-            logging.error(f"Error in Neatlogs on_chain_start: {e}")
+            logging.error(f"[Neatlogs] Error in callback handler | Handler: on_chain_start | Error: {type(e).__name__} | Details: {str(e)}")
 
     def on_chain_end(self, outputs: Union[Dict[str, Any], str], *, run_id: UUID, **kwargs: Any) -> None:
         if run_id not in self.active_spans:
@@ -343,7 +341,7 @@ class NeatlogsLangchainCallbackHandler(BaseCallbackHandler):
             }
             self._start_span(run_id, parent_run_id, "tool", attributes)
         except Exception as e:
-            logging.error(f"Error in Neatlogs on_tool_start: {e}")
+            logging.error(f"[Neatlogs] Error in callback handler | Handler: on_tool_start | Error: {type(e).__name__} | Details: {str(e)}")
 
     def on_tool_end(self, output: str, *, run_id: UUID, **kwargs: Any) -> None:
         if run_id in self.active_spans:
@@ -362,7 +360,7 @@ class NeatlogsLangchainCallbackHandler(BaseCallbackHandler):
             }
             self._start_span(run_id, parent_run_id, "agent_action", attributes)
         except Exception as e:
-            logging.error(f"Error in Neatlogs on_agent_action: {e}")
+            logging.error(f"[Neatlogs] Error in callback handler | Handler: on_agent_action | Error: {type(e).__name__} | Details: {str(e)}")
 
     def on_agent_finish(self, finish: AgentFinish, *, run_id: UUID, **kwargs: Any) -> None:
         if run_id in self.active_spans:
@@ -414,9 +412,7 @@ class AsyncNeatlogsLangchainCallbackHandler(AsyncCallbackHandler):
             logging.info(
                 "Neatlogs: Created temporary tracker for LangChain callback handler")
         elif not tracker:
-            logging.warning(
-                "Neatlogs Tracker not initialized. Please call neatlogs.init(api_key=...) to enable automatic patching, "
-                "or ensure a tracker is already initialized.")
+            logging.warning("[Neatlogs] Tracker not initialized | Action: Call neatlogs.init(api_key=...) to enable automatic patching")
 
         self.tracker = tracker
         self._api_key = api_key
@@ -521,7 +517,7 @@ class AsyncNeatlogsLangchainCallbackHandler(AsyncCallbackHandler):
                             {"role": "user", "content": str(prompt)})
                 span.messages = messages
         except Exception as e:
-            logging.error(f"Error in Neatlogs on_llm_start: {e}")
+            logging.error(f"[Neatlogs] Error in callback handler | Handler: on_llm_start | Error: {type(e).__name__} | Details: {str(e)}")
 
     async def on_llm_end(self, response: LLMResult, *, run_id: UUID, **kwargs: Any) -> None:
         try:
@@ -542,7 +538,7 @@ class AsyncNeatlogsLangchainCallbackHandler(AsyncCallbackHandler):
 
             self._end_span(run_id)
         except Exception as e:
-            logging.error(f"Error in Neatlogs on_llm_end: {e}")
+            logging.error(f"[Neatlogs] Error in callback handler | Handler: on_llm_end | Error: {type(e).__name__} | Details: {str(e)}")
         finally:
             release_patching()
 
@@ -570,7 +566,7 @@ class AsyncNeatlogsLangchainCallbackHandler(AsyncCallbackHandler):
                         for msg in messages[0]
                     ]
         except Exception as e:
-            logging.error(f"Error in Neatlogs on_chat_model_start: {e}")
+            logging.error(f"[Neatlogs] Error in callback handler | Handler: on_chat_model_start | Error: {type(e).__name__} | Details: {str(e)}")
 
     async def on_chain_start(self, serialized: Dict[str, Any], inputs: Dict[str, Any], *, run_id: UUID, parent_run_id: Optional[UUID] = None, **kwargs: Any) -> None:
         try:
@@ -584,7 +580,7 @@ class AsyncNeatlogsLangchainCallbackHandler(AsyncCallbackHandler):
             if should_track_span("chain", attributes):
                 self._start_span(run_id, parent_run_id, "chain", attributes)
         except Exception as e:
-            logging.error(f"Error in Neatlogs on_chain_start: {e}")
+            logging.error(f"[Neatlogs] Error in callback handler | Handler: on_chain_start | Error: {type(e).__name__} | Details: {str(e)}")
 
     async def on_chain_end(self, outputs: Union[Dict[str, Any], str], *, run_id: UUID, **kwargs: Any) -> None:
         if run_id in self.active_spans:
@@ -602,7 +598,7 @@ class AsyncNeatlogsLangchainCallbackHandler(AsyncCallbackHandler):
             }
             self._start_span(run_id, parent_run_id, "tool", attributes)
         except Exception as e:
-            logging.error(f"Error in Neatlogs on_tool_start: {e}")
+            logging.error(f"[Neatlogs] Error in callback handler | Handler: on_tool_start | Error: {type(e).__name__} | Details: {str(e)}")
 
     async def on_tool_end(self, output: str, *, run_id: UUID, **kwargs: Any) -> None:
         if run_id in self.active_spans:
@@ -621,7 +617,7 @@ class AsyncNeatlogsLangchainCallbackHandler(AsyncCallbackHandler):
             }
             self._start_span(run_id, parent_run_id, "agent_action", attributes)
         except Exception as e:
-            logging.error(f"Error in Neatlogs on_agent_action: {e}")
+            logging.error(f"[Neatlogs] Error in callback handler | Handler: on_agent_action | Error: {type(e).__name__} | Details: {str(e)}")
 
     async def on_agent_finish(self, finish: AgentFinish, *, run_id: UUID, **kwargs: Any) -> None:
         if run_id in self.active_spans:

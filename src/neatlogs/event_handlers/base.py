@@ -94,7 +94,7 @@ class BaseEventHandler(ABC):
         except Exception as e:
             # Log but don't fail the entire operation
             import logging
-            logging.warning(f"Failed to extract messages: {e}")
+            logging.warning(f"[Neatlogs] Failed to extract messages | Error: {type(e).__name__} | Details: {str(e)}")
 
     def enrich_span(self, span: 'LLMSpan', response: Any):
         """Enriches a span with data from an LLM response, without ending it."""
@@ -118,7 +118,7 @@ class BaseEventHandler(ABC):
                 span.model, span.prompt_tokens, span.completion_tokens)
 
         except Exception as e:
-            logging.warning(f"Neatlogs: Failed to enrich span data: {e}")
+            logging.warning(f"[Neatlogs] Failed to enrich span data | Error: {type(e).__name__} | Details: {str(e)}")
 
     def handle_call_end(self, span: 'LLMSpan', response: Any, success: bool = True, error: Optional[Exception] = None):
         """Handle the end of an LLM call by enriching and then ending the span."""
@@ -239,8 +239,7 @@ class BaseEventHandler(ABC):
             # Get framework from thread-local context
             framework = get_current_framework()
 
-            logging.warning(
-                f"Streaming not implemented for {provider} in neatlogs. Calling original method.")
+            logging.warning(f"[Neatlogs] Streaming not implemented | Provider: {provider} | Action: Calling original method")
             return original_method(*args, **kwargs)
         return wrapped
 
@@ -254,7 +253,6 @@ class BaseEventHandler(ABC):
             # Get framework from thread-local context
             framework = get_current_framework()
 
-            logging.warning(
-                f"Async streaming not implemented for {provider} in neatlogs. Calling original method.")
+            logging.warning(f"[Neatlogs] Async streaming not implemented | Provider: {provider} | Action: Calling original method")
             return await original_method(*args, **kwargs)
         return wrapped

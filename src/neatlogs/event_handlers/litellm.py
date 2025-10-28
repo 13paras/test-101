@@ -85,7 +85,7 @@ class LiteLLMHandler(BaseEventHandler):
                 data['finish_reason'] = choice.finish_reason
 
         except Exception as e:
-            logging.warning(f"Error extracting LiteLLM response data: {e}")
+            logging.warning(f"[Neatlogs] Error extracting response data | Provider: LiteLLM | Error: {type(e).__name__} | Details: {str(e)}")
 
         return data
 

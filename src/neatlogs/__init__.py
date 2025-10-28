@@ -11,6 +11,7 @@ from .instrumentation.manager import setup_import_monitor
 import logging
 import atexit
 import threading
+import os
 from typing import List, Optional
 
 __version__ = "1.1.7"
@@ -25,7 +26,8 @@ _init_lock = threading.Lock()
 def init(
     api_key: str,
     tags: Optional[List[str]] = None,
-    debug: bool = False
+    debug: bool = False,
+    log_level: Optional[str] = None
 ):
     """
     Initialize the Neatlogs tracking system.
@@ -35,6 +37,9 @@ def init(
         api_key (str): API key for the session. Will be persisted and logged.
         tags (List[str], optional): List of tags to associate with the tracking session.
         debug (bool): Enable debug logging. Defaults to False.
+        log_level (str, optional): Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL).
+                                   Can also be set via NEATLOGS_LOG_LEVEL environment variable.
+                                   If not specified, defaults to INFO or DEBUG if debug=True.
 
     Returns:
         LLMTracker: The initialized tracker instance.
@@ -43,7 +48,8 @@ def init(
         >>> import neatlogs
         >>> tracker = neatlogs.init(
         ...     api_key="your_api_key",
-        ...     tags=["tag1", "tag2"]
+        ...     tags=["tag1", "tag2"],
+        ...     log_level="ERROR"
         ... )
         >>> # Now all calls are automatically tracked!
     """
@@ -54,7 +60,19 @@ def init(
 
     global _global_tracker
 
-    if debug:
+    # Determine log level from parameters or environment variable
+    effective_log_level = log_level or os.getenv('NEATLOGS_LOG_LEVEL')
+    if effective_log_level:
+        level_map = {
+            'DEBUG': logging.DEBUG,
+            'INFO': logging.INFO,
+            'WARNING': logging.WARNING,
+            'ERROR': logging.ERROR,
+            'CRITICAL': logging.CRITICAL
+        }
+        numeric_level = level_map.get(effective_log_level.upper(), logging.INFO)
+        logging.basicConfig(level=numeric_level)
+    elif debug:
         logging.basicConfig(level=logging.DEBUG)
 
     with _init_lock:
@@ -65,6 +83,7 @@ def init(
                 agent_id=agent_id,
                 thread_id=thread_id,
                 tags=tags,
+                log_level=effective_log_level if 'effective_log_level' in locals() else None,
             )
             from .instrumentation import manager
             manager.instrument_all(_global_tracker)

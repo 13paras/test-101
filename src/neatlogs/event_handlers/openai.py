@@ -89,7 +89,7 @@ class OpenAIHandler(BaseEventHandler):
                 data['finish_reason'] = choice.finish_reason
 
         except Exception as e:
-            logging.warning(f"Error extracting OpenAI response data: {e}")
+            logging.warning(f"[Neatlogs] Error extracting response data | Provider: OpenAI | Error: {type(e).__name__} | Details: {str(e)}")
 
         return data
 

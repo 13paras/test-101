@@ -32,8 +32,7 @@ class NeatlogsLangchainCallbackHandler(BaseCallbackHandler):
             self.tracker = get_tracker()
 
         if not self.tracker:
-            logging.warning(
-                "Neatlogs Tracker not initialized. LangChain calls will not be tracked.")
+            logging.warning("[Neatlogs] Tracker not initialized | Framework: LangChain | Status: Calls will not be tracked")
 
         self.active_spans: Dict[UUID, LLMSpan] = {}
 
@@ -80,8 +79,7 @@ class NeatlogsLangchainCallbackHandler(BaseCallbackHandler):
             self._start_span(run_id, provider=provider_name,
                              model=model_name, attributes=attributes)
         except Exception as e:
-            logging.error(
-                f"Error in Neatlogs on_llm_start: {e}", exc_info=True)
+            logging.error(f"[Neatlogs] Error in event handler | Handler: on_llm_start | Framework: LangChain | Error: {type(e).__name__} | Details: {str(e)}", exc_info=True)
 
     def on_llm_end(self, response: LLMResult, *, run_id: UUID, **kwargs: Any) -> None:
         try:
@@ -104,14 +102,13 @@ class NeatlogsLangchainCallbackHandler(BaseCallbackHandler):
 
             self._end_span(run_id)
         except Exception as e:
-            logging.error(f"Error in Neatlogs on_llm_end: {e}", exc_info=True)
+            logging.error(f"[Neatlogs] Error in event handler | Handler: on_llm_end | Framework: LangChain | Error: {type(e).__name__} | Details: {str(e)}", exc_info=True)
 
     def on_llm_error(self, error: Exception, *, run_id: UUID, **kwargs: Any) -> None:
         try:
             self._end_span(run_id, success=False, error=error)
         except Exception as e:
-            logging.error(
-                f"Error in Neatlogs on_llm_error: {e}", exc_info=True)
+            logging.error(f"[Neatlogs] Error in event handler | Handler: on_llm_error | Framework: LangChain | Error: {type(e).__name__} | Details: {str(e)}", exc_info=True)
 
     # --- Simplified Handlers for other events to reduce noise ---
 

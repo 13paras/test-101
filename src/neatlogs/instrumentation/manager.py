@@ -138,7 +138,7 @@ def _neatlogs_import_monitor(name, globals=None, locals=None, fromlist=(), level
                     _already_patched.add(name)
 
         except Exception as e:
-            logging.error(f"Error patching {name}: {e}")
+            logging.error(f"[Neatlogs] Error patching framework | Framework: {name} | Error: {type(e).__name__} | Details: {str(e)}")
         finally:
             _currently_patching.discard(name)
 
@@ -204,8 +204,7 @@ def instrument_all(tracker):
                         if patch_method():
                             _already_patched.add(package_name)
         except Exception as e:
-            logging.error(
-                f"Error during initial patching of {package_name}: {e}")
+            logging.error(f"[Neatlogs] Error during initial patching | Package: {package_name} | Error: {type(e).__name__} | Details: {str(e)}")
         finally:
             _currently_patching.discard(package_name)
 
