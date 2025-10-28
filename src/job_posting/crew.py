@@ -49,6 +49,13 @@ class JobPostingCrew:
             verbose=True
         )
     
+    @agent
+    def compliance_checker_agent(self) -> Agent:
+        return Agent(
+            config=self.agents_config['compliance_checker_agent'],
+            verbose=True
+        )
+    
     @task
     def research_company_culture_task(self) -> Task:
         return Task(
@@ -83,6 +90,13 @@ class JobPostingCrew:
         return Task(
             config=self.tasks_config['industry_analysis_task'],
             agent=self.research_agent()
+        )
+
+    @task
+    def compliance_validation_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['compliance_validation_task'],
+            agent=self.compliance_checker_agent()
         )
 
     @crew
