@@ -57,3 +57,30 @@ industry_analysis_task:
     A detailed analysis report that identifies major industry trends, challenges, and opportunities relevant
     to the company's domain and the specific job role. This report should provide strategic insights on positioning
     the job role and the company as an attractive choice for potential candidates.
+
+compliance_validation_task:
+  description: >
+    Review the final job posting for legal compliance, with special attention to salary transparency requirements
+    based on the job location: {job_location}. Check if the location requires mandatory salary range disclosure
+    (e.g., California, New York, Colorado, Washington, and other jurisdictions with pay transparency laws).
+    
+    CRITICAL VALIDATION RULES:
+    1. If the job location is in California (including cities like Los Angeles, San Francisco, San Diego, etc.),
+       New York, Colorado, or Washington, the job posting MUST include a salary range section.
+    2. The salary range must include both minimum and maximum compensation figures.
+    3. If a salary range is missing for locations that require it, you MUST raise a compliance error
+       and provide specific guidance on what salary information needs to be added.
+    4. Verify that all other mandatory fields are present based on local regulations.
+    
+    If the job posting is missing required salary information, provide clear feedback on:
+    - Which jurisdiction requires the salary range
+    - The specific legal requirement
+    - Suggested format for the salary range section
+    
+    If the job posting is compliant, provide confirmation and approval for publication.
+  expected_output: >
+    A compliance report that either:
+    (1) APPROVES the job posting as compliant with all relevant labor laws, or
+    (2) REJECTS the job posting with specific compliance violations identified, particularly
+    missing salary range for locations that require it, along with remediation guidance.
+    The output must include a clear COMPLIANT or NON-COMPLIANT status.
