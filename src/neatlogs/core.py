@@ -7,6 +7,7 @@ import json
 import threading
 import logging
 import traceback
+import os
 from uuid import uuid4
 from datetime import datetime
 from typing import Dict, List, Optional
@@ -205,13 +206,14 @@ class LLMTracker:
     - Providing thread-safe operations for concurrent environments
     """
 
-    def __init__(self, api_key, session_id=None, agent_id=None, thread_id=None, tags=None, enable_server_sending=True):
+    def __init__(self, api_key, session_id=None, agent_id=None, thread_id=None, tags=None, enable_server_sending=True, log_level=None):
         self.session_id = session_id or str(uuid4())
         self.agent_id = agent_id or "default-agent"
         self.thread_id = thread_id or str(uuid4())
         self.tags = tags or []
         self.api_key = api_key
         self.enable_server_sending = enable_server_sending
+        self.log_level = log_level
         self._threads = []
 
         self.setup_logging()
@@ -250,10 +252,9 @@ class LLMTracker:
                 logging.debug(
                     f"Neatlogs: Successfully sent data to server, status: {response.status_code}")
             except requests.exceptions.RequestException as e:
-                logging.error(f"Error sending data to server: {e}")
+                logging.error(f"[Neatlogs] Error sending data to server | Error: {type(e).__name__} | Details: {str(e)}")
             except Exception as e:
-                logging.error(
-                    f"An unexpected error occurred in send_in_background: {e}")
+                logging.error(f"[Neatlogs] Unexpected error in send_in_background | Error: {type(e).__name__} | Details: {str(e)}")
 
         thread = threading.Thread(target=send_in_background, daemon=False)
         thread.start()
@@ -265,12 +266,26 @@ class LLMTracker:
         This method configures a dedicated logger for this tracker instance,
         ensuring that LLM call data is properly formatted and written to log files.
         It removes any existing handlers to prevent duplicate logs.
+        The log level can be dynamically configured via constructor parameter or
+        NEATLOGS_LOG_LEVEL environment variable.
         """
         self.file_logger = logging.getLogger(f'llm_tracker_{self.session_id}')
-        self.file_logger.setLevel(logging.INFO)
+        
+        # Determine log level dynamically
+        log_level = self.log_level or os.getenv('NEATLOGS_LOG_LEVEL', 'INFO')
+        level_map = {
+            'DEBUG': logging.DEBUG,
+            'INFO': logging.INFO,
+            'WARNING': logging.WARNING,
+            'ERROR': logging.ERROR,
+            'CRITICAL': logging.CRITICAL
+        }
+        numeric_level = level_map.get(log_level.upper() if isinstance(log_level, str) else 'INFO', logging.INFO)
+        self.file_logger.setLevel(numeric_level)
+        
         for handler in self.file_logger.handlers[:]:
             self.file_logger.removeHandler(handler)
-        formatter = logging.Formatter('%(asctime)s - %(message)s')
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 
     def start_llm_span(self, model=None, provider=None, framework=None, node_type: str = "llm_call", node_name: str = None) -> 'LLMSpan':
         """

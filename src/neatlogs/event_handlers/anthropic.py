@@ -93,7 +93,7 @@ class AnthropicHandler(BaseEventHandler):
                 data['finish_reason'] = response.stop_reason
 
         except Exception as e:
-            logging.warning(f"Error extracting Anthropic response data: {e}")
+            logging.warning(f"[Neatlogs] Error extracting response data | Provider: Anthropic | Error: {type(e).__name__} | Details: {str(e)}")
 
         return data
 

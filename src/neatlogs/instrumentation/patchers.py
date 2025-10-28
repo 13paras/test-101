@@ -59,7 +59,7 @@ class ProviderPatcher:
                 f"Neatlogs: Google GenAI not available for patching: {e}")
             return False
         except Exception as e:
-            logging.error(f"Failed to patch Google GenAI: {e}", exc_info=True)
+            logging.error(f"[Neatlogs] Failed to patch framework | Framework: Google GenAI | Error: {type(e).__name__} | Details: {str(e)}", exc_info=True)
             return False
 
     def _patch_openai_classes(self, provider_name):
@@ -145,8 +145,7 @@ class ProviderPatcher:
                 f"Neatlogs: Failed to import OpenAI for patching {provider_name}: {e}")
             return False
         except Exception as e:
-            logging.error(
-                f"Failed to patch OpenAI classes for {provider_name}: {e}", exc_info=True)
+            logging.error(f"[Neatlogs] Failed to patch framework | Framework: OpenAI ({provider_name}) | Error: {type(e).__name__} | Details: {str(e)}", exc_info=True)
             return False
 
     def patch_openai(self):
@@ -181,7 +180,7 @@ class ProviderPatcher:
         except ImportError:
             return False
         except Exception as e:
-            logging.error(f"Failed to patch CrewAI: {e}")
+            logging.error(f"[Neatlogs] Failed to patch framework | Framework: CrewAI | Error: {type(e).__name__} | Details: {str(e)}")
             return False
 
     def patch_litellm(self):
@@ -206,7 +205,7 @@ class ProviderPatcher:
         except ImportError:
             return False
         except Exception as e:
-            logging.error(f"Failed to patch LiteLLM: {e}")
+            logging.error(f"[Neatlogs] Failed to patch framework | Framework: LiteLLM | Error: {type(e).__name__} | Details: {str(e)}")
             return False
 
     def patch_anthropic(self):
@@ -246,7 +245,7 @@ class ProviderPatcher:
         except ImportError:
             return False
         except Exception as e:
-            logging.error(f"Failed to patch Anthropic: {e}")
+            logging.error(f"[Neatlogs] Failed to patch framework | Framework: Anthropic | Error: {type(e).__name__} | Details: {str(e)}")
             return False
 
     def patch_langgraph(self):
@@ -296,5 +295,5 @@ class ProviderPatcher:
             logging.debug("Neatlogs: LangGraph not available for patching.")
             return False
         except Exception as e:
-            logging.error(f"Failed to patch LangGraph: {e}", exc_info=True)
+            logging.error(f"[Neatlogs] Failed to patch framework | Framework: LangGraph | Error: {type(e).__name__} | Details: {str(e)}", exc_info=True)
             return False

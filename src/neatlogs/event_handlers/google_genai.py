@@ -118,8 +118,7 @@ class GoogleGenAIHandler(BaseEventHandler):
                 data['total_tokens'] = data['completion_tokens']
 
         except Exception as e:
-            logging.warning(
-                f"Error extracting Google GenAI response data: {e}")
+            logging.warning(f"[Neatlogs] Error extracting response data | Provider: Google GenAI | Error: {type(e).__name__} | Details: {str(e)}")
 
         return data
 
