@@ -1,4 +1,5 @@
 from typing import List
+from urllib.parse import urlparse
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 
@@ -6,7 +7,51 @@ from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool, WebsiteSearchTool, FileReadTool
 from pydantic import BaseModel, Field
 
-web_search_tool = WebsiteSearchTool()
+
+def validate_and_fix_url(url: str) -> str:
+    """
+    Validate and fix URL by adding https:// scheme if missing.
+    
+    Args:
+        url: The URL to validate and fix
+        
+    Returns:
+        A properly formatted URL with scheme
+    """
+    if not url:
+        return url
+    
+    # Parse the URL
+    parsed = urlparse(url)
+    
+    # If no scheme is present, prepend https://
+    if not parsed.scheme:
+        url = f"https://{url}"
+    
+    return url
+
+
+class ValidatedWebsiteSearchTool(WebsiteSearchTool):
+    """
+    Custom WebsiteSearchTool that validates and fixes URLs before processing.
+    Automatically prepends https:// to URLs without a scheme.
+    """
+    
+    def __init__(self, **kwargs):
+        # Extract website if provided and validate it
+        if 'website' in kwargs and kwargs['website']:
+            kwargs['website'] = validate_and_fix_url(kwargs['website'])
+        super().__init__(**kwargs)
+    
+    def _run(self, **kwargs) -> str:
+        """Override _run to validate URLs in arguments"""
+        # Validate website parameter if present
+        if 'website' in kwargs and kwargs['website']:
+            kwargs['website'] = validate_and_fix_url(kwargs['website'])
+        return super()._run(**kwargs)
+
+
+web_search_tool = ValidatedWebsiteSearchTool()
 seper_dev_tool = SerperDevTool()
 file_read_tool = FileReadTool(
     file_path='job_description_example.md',
