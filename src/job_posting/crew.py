@@ -6,7 +6,7 @@ from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool, WebsiteSearchTool, FileReadTool
 from pydantic import BaseModel, Field
 
-web_search_tool = WebsiteSearchTool()
+web_search_tool = WebsiteSearchTool(website='https://careers.wbd.com')
 seper_dev_tool = SerperDevTool()
 file_read_tool = FileReadTool(
     file_path='job_description_example.md',
