@@ -1,4 +1,6 @@
 from typing import List
+import os
+from pathlib import Path
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 
@@ -8,8 +10,14 @@ from pydantic import BaseModel, Field
 
 web_search_tool = WebsiteSearchTool()
 seper_dev_tool = SerperDevTool()
+
+# Get the absolute path to the job_description_example.md file
+# This file is in the same directory as this crew.py file
+current_dir = Path(__file__).parent
+job_description_path = current_dir / 'job_description_example.md'
+
 file_read_tool = FileReadTool(
-    file_path='job_description_example.md',
+    file_path=str(job_description_path),
     description='A tool to read the job description example file.'
 )
 
