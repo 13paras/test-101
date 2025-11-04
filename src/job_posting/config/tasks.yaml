@@ -29,10 +29,16 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    
+    IMPORTANT: Include a Salary Range section with the provided salary information: {salary_min} to {salary_max}.
+    This section must be included after the Requirements section and before the Benefits section to comply
+    with US salary transparency standards. Format it clearly with the range and a note about compensation
+    being determined based on experience, qualifications, and geographic location.
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, salary range (with {salary_min} to {salary_max}), and unique company benefits. 
+    The salary range section must be clearly visible and comply with US transparency requirements.
+    The tone should resonate with the company's culture and values, aimed at attracting the right candidates. 
 
 
 review_and_edit_job_posting_task:
@@ -41,8 +47,13 @@ review_and_edit_job_posting_task:
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
     to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
     feedback for any necessary revisions.
+    
+    CRITICAL: Verify that the Salary Range section is present and clearly displays the range from {salary_min} to {salary_max}.
+    This is required for US salary transparency compliance. Ensure the salary information is positioned after Requirements
+    and before Benefits, and includes appropriate context about compensation determination.
   expected_output: >
     A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
+    The job posting MUST include a compliant Salary Range section with {salary_min} to {salary_max}.
     Feedback on potential improvements and final approval for publishing. Formatted in markdown.
 
 industry_analysis_task:
