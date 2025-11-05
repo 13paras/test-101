@@ -29,10 +29,14 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    IMPORTANT: Include a Salary Range section that provides a competitive salary range for the position.
+    The salary range must be compliant with local salary disclosure regulations and should be positioned
+    after the Requirements section and before the Benefits section. Ensure the salary is competitive
+    based on industry standards and the role's requirements.
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, salary range (compliant with local regulations), and unique company benefits. 
+    The tone should resonate with the company's culture and values, aimed at attracting the right candidates. 
 
 
 review_and_edit_job_posting_task:
@@ -41,8 +45,12 @@ review_and_edit_job_posting_task:
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
     to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
     feedback for any necessary revisions.
+    CRITICAL: Verify that a Salary Range section is included and positioned after Requirements and before Benefits.
+    Ensure the salary range is competitive, realistic, and compliant with applicable local salary disclosure laws.
+    Review state-specific requirements for salary disclosure to ensure full compliance.
   expected_output: >
     A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
+    The posting must include a compliant Salary Range section with competitive compensation figures.
     Feedback on potential improvements and final approval for publishing. Formatted in markdown.
 
 industry_analysis_task:
