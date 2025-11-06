@@ -29,20 +29,29 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    IMPORTANT: Include a "Salary Range" section after the Requirements section. Use the salary 
+    research data to provide a competitive salary range. If specific salary data is not available,
+    include "Competitive salary commensurate with experience" or "Salary range to be determined 
+    based on experience and qualifications".
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, salary range section, and unique company benefits. The tone should resonate with the 
+    company's culture and values, aimed at attracting the right candidates. The salary range section 
+    must be clearly visible and appropriately positioned in the posting. 
 
 
 review_and_edit_job_posting_task:
   description: >
     Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
-    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
-    feedback for any necessary revisions.
+    to the desired candidates and accurately reflects the role's unique benefits and opportunities. 
+    CRITICAL: Verify that the job posting includes a clearly visible "Salary Range" section. If the salary range
+    is missing, add it with appropriate salary information or a default statement such as "Competitive salary 
+    commensurate with experience" if specific data is not available. The salary range section must be present
+    for compliance and transparency. Provide feedback for any necessary revisions.
   expected_output: >
     A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
+    The posting MUST include a visible "Salary Range" section positioned after the Requirements section. 
     Feedback on potential improvements and final approval for publishing. Formatted in markdown.
 
 industry_analysis_task:
@@ -57,3 +66,18 @@ industry_analysis_task:
     A detailed analysis report that identifies major industry trends, challenges, and opportunities relevant
     to the company's domain and the specific job role. This report should provide strategic insights on positioning
     the job role and the company as an attractive choice for potential candidates.
+
+research_salary_range_task:
+  description: >
+    Research and analyze the competitive salary range for the role described in {hiring_needs}.
+    Consider factors such as the industry standards from {company_domain}, geographic location,
+    experience level requirements, and current market trends. Use market data, industry reports,
+    and salary databases to determine a fair and competitive salary range that will attract
+    qualified candidates while aligning with industry standards. If specific salary data cannot
+    be determined, provide a reasonable estimate based on similar roles in the industry.
+  expected_output: >
+    A comprehensive salary analysis report that includes the recommended salary range for the position,
+    including minimum, maximum, and target compensation. The report should justify the range based on
+    market research, industry standards, and role requirements. If exact data is not available, clearly
+    state "Salary range to be determined based on experience and qualifications" or "Competitive salary
+    commensurate with experience".
