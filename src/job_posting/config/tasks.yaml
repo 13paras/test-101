@@ -29,10 +29,14 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    If salary range information is provided ({salary_range}), include a "Salary Range" section 
+    after the Requirements section and before the Benefits section. If no salary range is provided, 
+    omit this section entirely. The salary range section should include any relevant context about 
+    how the final compensation will be determined.
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, salary range (if provided), and unique company benefits. The tone should resonate with 
+    the company's culture and values, aimed at attracting the right candidates. 
 
 
 review_and_edit_job_posting_task:
