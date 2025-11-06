@@ -85,6 +85,13 @@ class JobPostingCrew:
             agent=self.research_agent()
         )
 
+    @task
+    def research_salary_range_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['research_salary_range_task'],
+            agent=self.research_agent()
+        )
+
     @crew
     def crew(self) -> Crew:
         """Creates the JobPostingCrew"""
