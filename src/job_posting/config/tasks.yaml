@@ -29,10 +29,16 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    IMPORTANT: Include a Salary Range section that provides transparent compensation information.
+    The salary range should be competitive and aligned with industry standards for the role and location.
+    Format the Salary Range section with a clear range (e.g., $XX,XXX - $XX,XXX USD annually) and
+    mention that the actual salary may vary based on experience, skills, and qualifications. Include
+    information about additional compensation such as equity, bonuses, or benefits if applicable.
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, unique company benefits, and a transparent Salary Range section. The tone should resonate
+    with the company's culture and values, aimed at attracting the right candidates. The Salary Range must
+    be clearly stated and compliant with transparency requirements. 
 
 
 review_and_edit_job_posting_task:
@@ -41,8 +47,13 @@ review_and_edit_job_posting_task:
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
     to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
     feedback for any necessary revisions.
+    CRITICAL: Verify that the job posting includes a Salary Range section with transparent compensation information.
+    Ensure the salary range is competitive, realistic, and compliant with pay transparency requirements. The Salary
+    Range section must clearly state the compensation range and include any relevant details about how the actual
+    salary may vary based on qualifications and experience.
   expected_output: >
     A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
+    The posting must include a compliant Salary Range section that meets transparency standards and legal requirements.
     Feedback on potential improvements and final approval for publishing. Formatted in markdown.
 
 industry_analysis_task:
