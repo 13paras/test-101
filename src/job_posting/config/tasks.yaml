@@ -29,21 +29,26 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    IMPORTANT: Include a Salary Range section that provides transparent compensation information.
+    The salary range should be based on market rates for the role and reflect competitive compensation
+    that aligns with the candidate's experience and qualifications.
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, salary range, and unique company benefits. The tone should resonate with the company's culture
+    and values, aimed at attracting the right candidates. The salary range must be clearly stated to ensure
+    transparency and meet candidate expectations. 
 
 
 review_and_edit_job_posting_task:
   description: >
     Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
-    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
+    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Verify that
+    the salary range is included and appropriately reflects market rates and company standards. Provide
     feedback for any necessary revisions.
   expected_output: >
     A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
-    Feedback on potential improvements and final approval for publishing. Formatted in markdown.
+    The posting must include a transparent salary range section. Feedback on potential improvements and final approval for publishing. Formatted in markdown.
 
 industry_analysis_task:
   description: >
