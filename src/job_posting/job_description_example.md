@@ -8,6 +8,11 @@ At InnovateTech, we're at the forefront of digital transformation, leveraging cu
 ### Location
 Remote - Global Team
 
+### Salary Range
+- Base salary (USD): $150,000 - $180,000 annually for US-based candidates; adjust the figures to reflect the latest market data for the target location before publishing.
+- Final offers are positioned within this band based on relevant experience, scope ownership, geographic cost of labor, and internal pay equity to stay compliant with state transparency laws.
+- Total compensation includes eligibility for performance bonuses and equity refreshers in addition to the base salary; update these details to mirror the current total rewards program.
+
 ### Job Summary
 As a Senior Software Engineer at InnovateTech, you'll lead the development of scalable software solutions that revolutionize how businesses interact with technology. You'll collaborate with cross-functional teams to drive projects from conception to deployment, ensuring high-quality and innovative outcomes.
 
