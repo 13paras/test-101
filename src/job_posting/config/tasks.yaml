@@ -29,9 +29,14 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    When salary data is provided (has_salary_data = {has_salary_data}), include a dedicated
+    Salary Range section in markdown with the heading "### Salary Range" and display the exact
+    range value supplied: {salary_range}. Omit the entire Salary Range section when
+    salary data is unavailable.
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
+    requirements, and unique company benefits. A clearly labeled Salary Range section must be present
+    whenever salary data is available and left out otherwise. The tone should resonate with the company's culture
     and values, aimed at attracting the right candidates. 
 
 
@@ -39,10 +44,13 @@ review_and_edit_job_posting_task:
   description: >
     Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
-    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
+    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Confirm that the
+    Salary Range section is present only when salary data is provided (has_salary_data = {has_salary_data}) and that it
+    reflects the supplied range {salary_range}. Provide
     feedback for any necessary revisions.
   expected_output: >
-    A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
+    A polished, error-free job posting that is clear, engaging, perfectly aligned with the company's culture and values,
+    and compliant with salary-transparency requirements.
     Feedback on potential improvements and final approval for publishing. Formatted in markdown.
 
 industry_analysis_task:
