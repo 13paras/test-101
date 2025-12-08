@@ -29,21 +29,30 @@ draft_job_posting_task:
     Include a Location section as exactly:
     Location
     Remote - Global Team
+    If {salary_data_available} is true, include a Salary Range section directly after the Location
+    section, formatted as:
+    Salary Range
+    {salary_range}
+    If salary information is missing or {salary_data_available} is false, explicitly state that the
+    salary range is pending to maintain compliance transparency.
   expected_output: >
     A detailed, engaging job posting that includes an introduction, role description, responsibilities,
-    requirements, and unique company benefits. The tone should resonate with the company's culture
-    and values, aimed at attracting the right candidates. 
+    requirements, unique company benefits, and a clearly labeled Salary Range section whenever data
+    is available. The tone should resonate with the company's culture and values, aimed at attracting
+    the right candidates. 
 
 
 review_and_edit_job_posting_task:
   description: >
     Review the draft job posting for the role {hiring_needs}. Check for clarity, engagement, grammatical accuracy,
     and alignment with the company's culture and values. Edit and refine the content, ensuring it speaks directly
-    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Provide
-    feedback for any necessary revisions.
+    to the desired candidates and accurately reflects the role's unique benefits and opportunities. Verify that
+    the Salary Range section is present whenever {salary_data_available} is true and that the language complies
+    with disclosure best practices. Provide feedback for any necessary revisions.
   expected_output: >
-    A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values.
-    Feedback on potential improvements and final approval for publishing. Formatted in markdown.
+    A polished, error-free job posting that is clear, engaging, and perfectly aligned with the company's culture and values,
+    explicitly confirming that the Salary Range section is included (or the lack of data is transparently noted). Provide
+    feedback on potential improvements and final approval for publishing. Formatted in markdown.
 
 industry_analysis_task:
   description: >

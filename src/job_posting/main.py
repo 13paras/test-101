@@ -15,6 +15,8 @@ def run():
         'company_description': "Warner Bros. Discovery is a premier global media and entertainment company, offering audiences the world’s most differentiated and complete portfolio of content, brands and franchises across television, film, sports, news, streaming and gaming. We're home to the world’s best storytellers, creating world-class products for consumers",
         'hiring_needs': 'Production Assistant, for a TV production set in Los Angeles in June 2025',
         'specific_benefits': 'Weekly Pay, Employee Meals, healthcare',
+        'salary_data_available': True,
+        'salary_range': 'USD $1,650 - $1,900 per week (non-union, based on a 6-day shoot schedule)',
     }
     JobPostingCrew().crew().kickoff(inputs=inputs)
 
@@ -28,6 +30,8 @@ def train():
         'company_description': "Warner Bros. Discovery is a premier global media and entertainment company, offering audiences the world’s most differentiated and complete portfolio of content, brands and franchises across television, film, sports, news, streaming and gaming. We're home to the world’s best storytellers, creating world-class products for consumers",
         'hiring_needs': 'Production Assistant, for a TV production set in Los Angeles in June 2025',
         'specific_benefits': 'Weekly Pay, Employee Meals, healthcare',
+        'salary_data_available': True,
+        'salary_range': 'USD $1,650 - $1,900 per week (non-union, based on a 6-day shoot schedule)',
     }
     try:
         JobPostingCrew().crew().train(
