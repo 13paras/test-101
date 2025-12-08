@@ -21,7 +21,9 @@ It uses GPT-4o by default so you should have access to that to run it.
 
 - **Configure Environment**: Copy `.env.example` and set up the environment variables for [OpenAI](https://platform.openai.com/api-keys) and other tools as needed, like [Serper](serper.dev).
 - **Install Dependencies**: Run `poetry lock && poetry install`.
-- **Customize**: Modify `src/job_posting/main.py` to add custom inputs for your agents and tasks.
+- **Customize**: Modify `src/job_posting/main.py` to add custom inputs for your agents and tasks. Provide both
+  `salary_data_available` (bool) and `salary_range` (string) so every generated job posting can surface the
+  legally required salary disclosure.
 - **Customize Further**: Check `src/job_posting/config/agents.yaml` to update your agents and `src/job_posting/config/tasks.yaml` to update your tasks.
 - **Execute the Script**: Run `poetry run job_posting` and input your project details.
 
