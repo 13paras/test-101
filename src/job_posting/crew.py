@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 
@@ -13,11 +13,41 @@ file_read_tool = FileReadTool(
     description='A tool to read the job description example file.'
 )
 
+from pydantic import BaseModel, Field, field_validator
+import math
+
+class SalaryInfo(BaseModel):
+    """Salary information model"""
+    salary_min: Optional[float] = Field(None, description="Minimum salary for the role.")
+    salary_max: Optional[float] = Field(None, description="Maximum salary for the role.")
+    salary_range: Optional[str] = Field(None, description="Formatted salary range string.")
+
+    @field_validator('salary_min', 'salary_max', mode='before')
+    @classmethod
+    def validate_numbers(cls, v):
+        if v is None:
+            return None
+        try:
+            val = float(v)
+            if math.isnan(val) or math.isinf(val):
+                return None
+            return val
+        except (ValueError, TypeError):
+            return None
+
+    def get_formatted_range(self) -> Optional[str]:
+        if self.salary_min is not None and self.salary_max is not None:
+            min_val = int(self.salary_min) if self.salary_min.is_integer() else self.salary_min
+            max_val = int(self.salary_max) if self.salary_max.is_integer() else self.salary_max
+            return f"{min_val} - {max_val}"
+        return self.salary_range
+
 class ResearchRoleRequirements(BaseModel):
     """Research role requirements model"""
     skills: List[str] = Field(..., description="List of recommended skills for the ideal candidate aligned with the company's culture, ongoing projects, and the specific role's requirements.")
     experience: List[str] = Field(..., description="List of recommended experience for the ideal candidate aligned with the company's culture, ongoing projects, and the specific role's requirements.")
     qualities: List[str] = Field(..., description="List of recommended qualities for the ideal candidate aligned with the company's culture, ongoing projects, and the specific role's requirements.")
+    salary_info: Optional[SalaryInfo] = Field(None, description="Salary information for the role.")
 
 @CrewBase
 class JobPostingCrew:

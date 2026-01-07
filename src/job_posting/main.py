@@ -13,7 +13,7 @@ def run():
     inputs = {
         'company_domain': 'careers.wbd.com',
         'company_description': "Warner Bros. Discovery is a premier global media and entertainment company, offering audiences the world’s most differentiated and complete portfolio of content, brands and franchises across television, film, sports, news, streaming and gaming. We're home to the world’s best storytellers, creating world-class products for consumers",
-        'hiring_needs': 'Production Assistant, for a TV production set in Los Angeles in June 2025',
+        'hiring_needs': 'Production Assistant, for a TV production set in Los Angeles in June 2025. Salary range: $50,000 - $75,000',
         'specific_benefits': 'Weekly Pay, Employee Meals, healthcare',
     }
     JobPostingCrew().crew().kickoff(inputs=inputs)
@@ -26,7 +26,7 @@ def train():
     inputs = {
         'company_domain': 'careers.wbd.com',
         'company_description': "Warner Bros. Discovery is a premier global media and entertainment company, offering audiences the world’s most differentiated and complete portfolio of content, brands and franchises across television, film, sports, news, streaming and gaming. We're home to the world’s best storytellers, creating world-class products for consumers",
-        'hiring_needs': 'Production Assistant, for a TV production set in Los Angeles in June 2025',
+        'hiring_needs': 'Production Assistant, for a TV production set in Los Angeles in June 2025. Salary range: $50,000 - $75,000',
         'specific_benefits': 'Weekly Pay, Employee Meals, healthcare',
     }
     try:
