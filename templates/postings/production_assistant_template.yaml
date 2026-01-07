@@ -1,0 +1,17 @@
+role: "Production Assistant"
+template_version: "1.0"
+sections:
+  - name: "Role Description"
+  - name: "Responsibilities"
+  - name: "Requirements"
+  - name: "Compensation"
+    content: |
+      {{salary_range_block}}
+  - name: "Benefits"
+
+salary_range:
+  min: "$X"
+  max: "$Y"
+  currency: "USD"
+  period: "per year"
+  note: "US postings; replace with actual figures when available"
