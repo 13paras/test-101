@@ -4,7 +4,8 @@ from crewai.project import CrewBase, agent, crew, task
 
 # Check our tools documentations for more information on how to use them
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool, WebsiteSearchTool, FileReadTool
-from pydantic import BaseModel, Field
+from job_posting.models import ResearchRoleRequirements, JobPosting
+from job_posting.compensation import get_salary_range_for_band
 
 web_search_tool = WebsiteSearchTool()
 seper_dev_tool = SerperDevTool()
@@ -12,12 +13,6 @@ file_read_tool = FileReadTool(
     file_path='job_description_example.md',
     description='A tool to read the job description example file.'
 )
-
-class ResearchRoleRequirements(BaseModel):
-    """Research role requirements model"""
-    skills: List[str] = Field(..., description="List of recommended skills for the ideal candidate aligned with the company's culture, ongoing projects, and the specific role's requirements.")
-    experience: List[str] = Field(..., description="List of recommended experience for the ideal candidate aligned with the company's culture, ongoing projects, and the specific role's requirements.")
-    qualities: List[str] = Field(..., description="List of recommended qualities for the ideal candidate aligned with the company's culture, ongoing projects, and the specific role's requirements.")
 
 @CrewBase
 class JobPostingCrew:
@@ -75,7 +70,8 @@ class JobPostingCrew:
     def review_and_edit_job_posting_task(self) -> Task:
         return Task(
             config=self.tasks_config['review_and_edit_job_posting_task'],
-            agent=self.review_agent()
+            agent=self.review_agent(),
+            output_pydantic=JobPosting
         )
 
     @task
