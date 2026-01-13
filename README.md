@@ -21,8 +21,9 @@ It uses GPT-4o by default so you should have access to that to run it.
 
 - **Configure Environment**: Copy `.env.example` and set up the environment variables for [OpenAI](https://platform.openai.com/api-keys) and other tools as needed, like [Serper](serper.dev).
 - **Install Dependencies**: Run `poetry lock && poetry install`.
-- **Customize**: Modify `src/job_posting/main.py` to add custom inputs for your agents and tasks.
+- **Customize**: Modify `src/job_posting/main.py` to add custom inputs for your agents and tasks. Ensure you provide a `job_level` (entry, mid, or senior) to automatically include a salary range.
 - **Customize Further**: Check `src/job_posting/config/agents.yaml` to update your agents and `src/job_posting/config/tasks.yaml` to update your tasks.
+- **Pay Transparency**: This project enforces pay transparency. All job postings must include a `Salary Range`. This is automatically derived from the `job_level` input but can be overridden.
 - **Execute the Script**: Run `poetry run job_posting` and input your project details.
 
 ## Details & Explanation
@@ -32,6 +33,8 @@ It uses GPT-4o by default so you should have access to that to run it.
   - `src/job_posting/crew.py`: Main crew file where agents and tasks come together, and the main logic is executed.
   - `src/job_posting/config/agents.yaml`: Configuration file for defining agents.
   - `src/job_posting/config/tasks.yaml`: Configuration file for defining tasks.
+  - `src/job_posting/compensation.py`: Handles compensation band mapping and salary range derivation.
+  - `scripts/retroactive_update_salary.py`: Script to add missing salary ranges to existing job postings.
   - `src/job_posting/tools`: Contains tool classes used by the agents.
 
 ## License
