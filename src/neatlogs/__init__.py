@@ -25,7 +25,8 @@ _init_lock = threading.Lock()
 def init(
     api_key: str,
     tags: Optional[List[str]] = None,
-    debug: bool = False
+    debug: bool = False,
+    enable_pii_masking: bool = False,
 ):
     """
     Initialize the Neatlogs tracking system.
@@ -35,6 +36,7 @@ def init(
         api_key (str): API key for the session. Will be persisted and logged.
         tags (List[str], optional): List of tags to associate with the tracking session.
         debug (bool): Enable debug logging. Defaults to False.
+        enable_pii_masking (bool): Redact email/phone patterns from span payloads. Defaults to False.
 
     Returns:
         LLMTracker: The initialized tracker instance.
@@ -65,6 +67,7 @@ def init(
                 agent_id=agent_id,
                 thread_id=thread_id,
                 tags=tags,
+                enable_pii_masking=enable_pii_masking,
             )
             from .instrumentation import manager
             manager.instrument_all(_global_tracker)

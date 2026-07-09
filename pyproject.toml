@@ -15,6 +15,10 @@ dependencies = [
 job_posting = "job_posting.main:run"
 train = "job_posting.main:train"
 run_crew = "job_posting.main:run"
+support_copilot_sla = "support_copilot_sla.main:run"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/job_posting", "src/neatlogs", "src/support_copilot_sla"]
 
 [build-system]
 requires = [

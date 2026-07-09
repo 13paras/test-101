@@ -22,6 +22,9 @@ _current_framework_ctx = contextvars.ContextVar(
 # Context variable for parent span
 current_span_id_context = contextvars.ContextVar('current_span_id', default=None)
 
+# Context variable for current agent name (used by CrewAI handler)
+_current_agent_name_ctx = contextvars.ContextVar('current_agent_name', default=None)
+
 
 # Context variable to suppress low-level patching
 _suppress_patching_ctx = contextvars.ContextVar(
@@ -56,6 +59,21 @@ def release_patching():
 def is_patching_suppressed() -> bool:
     """Checks if low-level patching is currently suppressed."""
     return _suppress_patching_ctx.get()
+
+
+def set_current_agent_name(name: str):
+    """Set the current agent name for the active async task."""
+    _current_agent_name_ctx.set(name)
+
+
+def get_current_agent_name() -> Optional[str]:
+    """Get the current agent name from the active async task."""
+    return _current_agent_name_ctx.get()
+
+
+def clear_current_agent_name():
+    """Clear the current agent name context."""
+    _current_agent_name_ctx.set(None)
 
 
 # Context variable for passing LangGraph node spans to provider handlers
@@ -205,13 +223,23 @@ class LLMTracker:
     - Providing thread-safe operations for concurrent environments
     """
 
-    def __init__(self, api_key, session_id=None, agent_id=None, thread_id=None, tags=None, enable_server_sending=True):
+    def __init__(
+        self,
+        api_key,
+        session_id=None,
+        agent_id=None,
+        thread_id=None,
+        tags=None,
+        enable_server_sending=True,
+        enable_pii_masking=False,
+    ):
         self.session_id = session_id or str(uuid4())
         self.agent_id = agent_id or "default-agent"
         self.thread_id = thread_id or str(uuid4())
         self.tags = tags or []
         self.api_key = api_key
         self.enable_server_sending = enable_server_sending
+        self.enable_pii_masking = enable_pii_masking
         self._threads = []
 
         self.setup_logging()
@@ -237,6 +265,9 @@ class LLMTracker:
                 # url = "http://localhost:3000/api/data/v2"
                 headers = {"Content-Type": "application/json"}
                 trace_data = asdict(call_data)
+                if self.enable_pii_masking:
+                    from .pii import sanitize_span_payload
+                    trace_data = sanitize_span_payload(trace_data)
                 api_data = {
                     "dataDump": json.dumps(trace_data),
                     "projectAPIKey": call_data.api_key or self.api_key,
@@ -315,7 +346,11 @@ class LLMTracker:
             self.log_llm_call(call_data)
 
     def log_llm_call(self, call_data: LLMCallData):
-        log_entry = {"event_type": "LLM_CALL", "data": asdict(call_data)}
+        payload = asdict(call_data)
+        if self.enable_pii_masking:
+            from .pii import sanitize_span_payload
+            payload = sanitize_span_payload(payload)
+        log_entry = {"event_type": "LLM_CALL", "data": payload}
         self.file_logger.info(json.dumps(log_entry, indent=2))
         if self.enable_server_sending:
             logging.debug(
