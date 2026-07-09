@@ -1,0 +1,20 @@
+draft_reply_task:
+  description: >
+    Draft a support reply for ticket {ticket_id}. The customer reported:
+    {issue_summary}. Do NOT use the customer's name ({customer_name}) in the
+    reply — use a neutral greeting. Do NOT ask for phone numbers or store
+    credentials; if needed, link to https://support.example.com/secure-intake.
+  expected_output: >
+    A ready-to-send support reply draft that uses neutral greetings, avoids
+    all customer names, and references the secure intake form for any
+    sensitive data collection instead of asking inline.
+
+handle_sla_support_ticket_task:
+  description: >
+    Process SLA support ticket {ticket_id} for issue: {issue_summary}.
+    Schedule a callback for the preferred time {preferred_time} using the
+    Schedule Callback tool. Produce a final workflow result that includes
+    the reply draft and callback confirmation without exposing raw email.
+  expected_output: >
+    A JSON workflow result with ticket_id, reply_draft, and a callback object
+    containing user_id and masked_email only — no customer_email field.
